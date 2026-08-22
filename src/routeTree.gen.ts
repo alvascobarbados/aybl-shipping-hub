@@ -17,6 +17,7 @@ import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as RatesRouteImport } from './routes/rates'
 import { Route as SailingsRouteImport } from './routes/sailings'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
@@ -78,6 +79,11 @@ const SailingsRoute = SailingsRouteImport.update({
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -220,6 +226,7 @@ export interface FileRoutesByFullPath {
   '/rates': typeof RatesRoute
   '/sailings': typeof SailingsRoute
   '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/app': typeof AuthenticatedAppRouteWithChildren
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
@@ -252,6 +259,7 @@ export interface FileRoutesByTo {
   '/rates': typeof RatesRoute
   '/sailings': typeof SailingsRoute
   '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/app': typeof AuthenticatedAppRouteWithChildren
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/admin/capacity': typeof AuthenticatedAdminCapacityRoute
@@ -285,6 +293,7 @@ export interface FileRoutesById {
   '/rates': typeof RatesRoute
   '/sailings': typeof SailingsRoute
   '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/_authenticated/app': typeof AuthenticatedAppRouteWithChildren
   '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
@@ -319,6 +328,7 @@ export interface FileRouteTypes {
     | '/rates'
     | '/sailings'
     | '/signup'
+    | '/sitemap.xml'
     | '/admin'
     | '/app'
     | '/admin/bookings'
@@ -351,6 +361,7 @@ export interface FileRouteTypes {
     | '/rates'
     | '/sailings'
     | '/signup'
+    | '/sitemap.xml'
     | '/app'
     | '/admin/bookings'
     | '/admin/capacity'
@@ -383,6 +394,7 @@ export interface FileRouteTypes {
     | '/rates'
     | '/sailings'
     | '/signup'
+    | '/sitemap.xml'
     | '/_authenticated/admin'
     | '/_authenticated/app'
     | '/_authenticated/admin/bookings'
@@ -417,6 +429,7 @@ export interface RootRouteChildren {
   RatesRoute: typeof RatesRoute
   SailingsRoute: typeof SailingsRoute
   SignupRoute: typeof SignupRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -475,6 +488,13 @@ declare module '@tanstack/react-router' {
       path: '/signup'
       fullPath: '/signup'
       preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -723,6 +743,7 @@ const rootRouteChildren: RootRouteChildren = {
   RatesRoute: RatesRoute,
   SailingsRoute: SailingsRoute,
   SignupRoute: SignupRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
