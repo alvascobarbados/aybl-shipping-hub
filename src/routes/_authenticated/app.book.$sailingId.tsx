@@ -20,33 +20,33 @@ function BookPage() {
   const [busy, setBusy] = useState(false);
   const sailing = sailings.find((s) => s.id === sailingId);
 
-  async function hold(quote: Quote, v: QuoteFormValues) {
+  async function hold(_quote: Quote, v: QuoteFormValues) {
     setBusy(true);
     const { data, error } = await supabase.rpc("hold_space", {
-      p_sailing_id: sailingId,
-      p_cbm: v.cbm,
-      p_gross_kg: v.grossKg,
-      p_cargo_type: v.cargoType,
-      p_fare: v.fare,
-      p_standing: v.standing,
-      p_origin_option: v.origin,
-      p_delivery_option: v.delivery,
-      p_insurance_declared_value: v.insuranceValue,
-      p_photo_check: v.photoCheck,
-      p_price_breakdown: quote as unknown as Record<string, unknown>,
-      p_total_usd: quote.total,
+      _sailing_id: sailingId,
+      _cbm: v.cbm,
+      _gross_kg: v.grossKg,
+      _cargo_type: v.cargoType,
+      _fare: v.fare,
+      _standing: v.standing,
+      _origin: v.origin,
+      _delivery: v.delivery,
+      _insurance_value: v.insuranceValue,
+      _photo_check: v.photoCheck,
     });
     setBusy(false);
     if (error) {
       toast.error(error.message);
       return;
     }
-    const result = data as unknown as { ref?: string; waitlisted_cbm?: number } | null;
-    if (result?.waitlisted_cbm) {
-      toast.info(`${result.waitlisted_cbm} cbm waitlisted for the next sailing on this lane.`);
+    const result = data as unknown as { ref?: string; waitlisted?: number } | null;
+    if (result?.waitlisted) {
+      toast.info(`${result.waitlisted} cbm waitlisted for the next sailing on this lane.`);
     }
     if (result?.ref) {
       navigate({ to: "/app/bookings/$ref", params: { ref: result.ref } });
+    } else {
+      toast.info("No space left on this sailing — you're on the waitlist for the next one.");
     }
   }
 
