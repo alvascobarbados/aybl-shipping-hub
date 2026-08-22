@@ -7,11 +7,11 @@ interface LiveValueProps {
   /** The rendered value. Always comes from data — never typed into copy. */
   value: string | number;
   /** Small muted suffix, e.g. "cbm", "/ cbm", "days". */
-  unit?: string;
+  unit?: string | undefined;
   /** Optional "updated hh:mm AST" stamp. */
-  stamp?: string | Date | null;
-  className?: string;
-  tone?: "default" | "primary" | "board" | "amber" | "green" | "muted";
+  stamp?: string | Date | null | undefined;
+  className?: string | undefined;
+  tone?: "default" | "primary" | "board" | "amber" | "green" | "muted" | undefined;
 }
 
 const toneClass = {
