@@ -36,6 +36,7 @@ import { Route as AuthenticatedAppSettingsRouteImport } from './routes/_authenti
 import { Route as AuthenticatedAppTeamRouteImport } from './routes/_authenticated/app.team'
 import { Route as AuthenticatedAppBookSailingIdRouteImport } from './routes/_authenticated/app.book.$sailingId'
 import { Route as AuthenticatedAppBookingsIndexRouteImport } from './routes/_authenticated/app.bookings.index'
+import { Route as AuthenticatedAppBookingsRefRouteImport } from './routes/_authenticated/app.bookings.$ref'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -183,6 +184,12 @@ const AuthenticatedAppBookingsIndexRoute =
     path: '/bookings/',
     getParentRoute: () => AuthenticatedAppRoute,
   } as any)
+const AuthenticatedAppBookingsRefRoute =
+  AuthenticatedAppBookingsRefRouteImport.update({
+    id: '/bookings/$ref',
+    path: '/bookings/$ref',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -210,6 +217,7 @@ export interface FileRoutesByFullPath {
   '/app/team': typeof AuthenticatedAppTeamRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/app/book/$sailingId': typeof AuthenticatedAppBookSailingIdRoute
+  '/app/bookings/$ref': typeof AuthenticatedAppBookingsRefRoute
   '/app/bookings/': typeof AuthenticatedAppBookingsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -237,6 +245,7 @@ export interface FileRoutesByTo {
   '/app/team': typeof AuthenticatedAppTeamRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/app/book/$sailingId': typeof AuthenticatedAppBookSailingIdRoute
+  '/app/bookings/$ref': typeof AuthenticatedAppBookingsRefRoute
   '/app/bookings': typeof AuthenticatedAppBookingsIndexRoute
 }
 export interface FileRoutesById {
@@ -267,6 +276,7 @@ export interface FileRoutesById {
   '/_authenticated/app/team': typeof AuthenticatedAppTeamRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/app/book/$sailingId': typeof AuthenticatedAppBookSailingIdRoute
+  '/_authenticated/app/bookings/$ref': typeof AuthenticatedAppBookingsRefRoute
   '/_authenticated/app/bookings/': typeof AuthenticatedAppBookingsIndexRoute
 }
 export interface FileRouteTypes {
@@ -297,6 +307,7 @@ export interface FileRouteTypes {
     | '/app/team'
     | '/admin/'
     | '/app/book/$sailingId'
+    | '/app/bookings/$ref'
     | '/app/bookings/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -324,6 +335,7 @@ export interface FileRouteTypes {
     | '/app/team'
     | '/admin'
     | '/app/book/$sailingId'
+    | '/app/bookings/$ref'
     | '/app/bookings'
   id:
     | '__root__'
@@ -353,6 +365,7 @@ export interface FileRouteTypes {
     | '/_authenticated/app/team'
     | '/_authenticated/admin/'
     | '/_authenticated/app/book/$sailingId'
+    | '/_authenticated/app/bookings/$ref'
     | '/_authenticated/app/bookings/'
   fileRoutesById: FileRoutesById
 }
@@ -558,6 +571,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppBookingsIndexRouteImport
       parentRoute: typeof AuthenticatedAppRoute
     }
+    '/_authenticated/app/bookings/$ref': {
+      id: '/_authenticated/app/bookings/$ref'
+      path: '/bookings/$ref'
+      fullPath: '/app/bookings/$ref'
+      preLoaderRoute: typeof AuthenticatedAppBookingsRefRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
   }
 }
 
@@ -596,6 +616,7 @@ interface AuthenticatedAppRouteChildren {
   AuthenticatedAppSettingsRoute: typeof AuthenticatedAppSettingsRoute
   AuthenticatedAppTeamRoute: typeof AuthenticatedAppTeamRoute
   AuthenticatedAppBookSailingIdRoute: typeof AuthenticatedAppBookSailingIdRoute
+  AuthenticatedAppBookingsRefRoute: typeof AuthenticatedAppBookingsRefRoute
   AuthenticatedAppBookingsIndexRoute: typeof AuthenticatedAppBookingsIndexRoute
 }
 
@@ -607,6 +628,7 @@ const AuthenticatedAppRouteChildren: AuthenticatedAppRouteChildren = {
   AuthenticatedAppSettingsRoute: AuthenticatedAppSettingsRoute,
   AuthenticatedAppTeamRoute: AuthenticatedAppTeamRoute,
   AuthenticatedAppBookSailingIdRoute: AuthenticatedAppBookSailingIdRoute,
+  AuthenticatedAppBookingsRefRoute: AuthenticatedAppBookingsRefRoute,
   AuthenticatedAppBookingsIndexRoute: AuthenticatedAppBookingsIndexRoute,
 }
 
