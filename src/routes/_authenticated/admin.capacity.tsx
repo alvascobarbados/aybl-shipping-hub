@@ -41,7 +41,7 @@ function CapacityConsole() {
     },
   });
 
-  async function act(id: string, status: string, note: string) {
+  async function act(id: string, status: "confirmed" | "cancelled" | "expired", note: string) {
     const { error } = await supabase.from("bookings").update({ status }).eq("id", id);
     if (error) {
       toast.error(error.message);

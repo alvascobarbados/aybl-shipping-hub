@@ -21,11 +21,14 @@ import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin.bookings'
+import { Route as AuthenticatedAdminCapacityRouteImport } from './routes/_authenticated/admin.capacity'
 import { Route as AuthenticatedAdminCustomersRouteImport } from './routes/_authenticated/admin.customers'
 import { Route as AuthenticatedAdminDestinationRouteImport } from './routes/_authenticated/admin.destination'
 import { Route as AuthenticatedAdminManifestsRouteImport } from './routes/_authenticated/admin.manifests'
+import { Route as AuthenticatedAdminPricingRouteImport } from './routes/_authenticated/admin.pricing'
 import { Route as AuthenticatedAdminReceivingRouteImport } from './routes/_authenticated/admin.receiving'
 import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin.reports'
+import { Route as AuthenticatedAdminSailingsRouteImport } from './routes/_authenticated/admin.sailings'
 import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authenticated/admin.settings'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
 import { Route as AuthenticatedAppBillingRouteImport } from './routes/_authenticated/app.billing'
@@ -98,6 +101,12 @@ const AuthenticatedAdminBookingsRoute =
     path: '/bookings',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminCapacityRoute =
+  AuthenticatedAdminCapacityRouteImport.update({
+    id: '/capacity',
+    path: '/capacity',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminCustomersRoute =
   AuthenticatedAdminCustomersRouteImport.update({
     id: '/customers',
@@ -116,6 +125,12 @@ const AuthenticatedAdminManifestsRoute =
     path: '/manifests',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminPricingRoute =
+  AuthenticatedAdminPricingRouteImport.update({
+    id: '/pricing',
+    path: '/pricing',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminReceivingRoute =
   AuthenticatedAdminReceivingRouteImport.update({
     id: '/receiving',
@@ -126,6 +141,12 @@ const AuthenticatedAdminReportsRoute =
   AuthenticatedAdminReportsRouteImport.update({
     id: '/reports',
     path: '/reports',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminSailingsRoute =
+  AuthenticatedAdminSailingsRouteImport.update({
+    id: '/sailings',
+    path: '/sailings',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
 const AuthenticatedAdminSettingsRoute =
@@ -202,11 +223,14 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/app': typeof AuthenticatedAppRouteWithChildren
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
+  '/admin/capacity': typeof AuthenticatedAdminCapacityRoute
   '/admin/customers': typeof AuthenticatedAdminCustomersRoute
   '/admin/destination': typeof AuthenticatedAdminDestinationRoute
   '/admin/manifests': typeof AuthenticatedAdminManifestsRoute
+  '/admin/pricing': typeof AuthenticatedAdminPricingRoute
   '/admin/receiving': typeof AuthenticatedAdminReceivingRoute
   '/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/admin/sailings': typeof AuthenticatedAdminSailingsRoute
   '/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/app/billing': typeof AuthenticatedAppBillingRoute
@@ -230,11 +254,14 @@ export interface FileRoutesByTo {
   '/signup': typeof SignupRoute
   '/app': typeof AuthenticatedAppRouteWithChildren
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
+  '/admin/capacity': typeof AuthenticatedAdminCapacityRoute
   '/admin/customers': typeof AuthenticatedAdminCustomersRoute
   '/admin/destination': typeof AuthenticatedAdminDestinationRoute
   '/admin/manifests': typeof AuthenticatedAdminManifestsRoute
+  '/admin/pricing': typeof AuthenticatedAdminPricingRoute
   '/admin/receiving': typeof AuthenticatedAdminReceivingRoute
   '/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/admin/sailings': typeof AuthenticatedAdminSailingsRoute
   '/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/app/billing': typeof AuthenticatedAppBillingRoute
@@ -261,11 +288,14 @@ export interface FileRoutesById {
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/_authenticated/app': typeof AuthenticatedAppRouteWithChildren
   '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
+  '/_authenticated/admin/capacity': typeof AuthenticatedAdminCapacityRoute
   '/_authenticated/admin/customers': typeof AuthenticatedAdminCustomersRoute
   '/_authenticated/admin/destination': typeof AuthenticatedAdminDestinationRoute
   '/_authenticated/admin/manifests': typeof AuthenticatedAdminManifestsRoute
+  '/_authenticated/admin/pricing': typeof AuthenticatedAdminPricingRoute
   '/_authenticated/admin/receiving': typeof AuthenticatedAdminReceivingRoute
   '/_authenticated/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/_authenticated/admin/sailings': typeof AuthenticatedAdminSailingsRoute
   '/_authenticated/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/_authenticated/app/billing': typeof AuthenticatedAppBillingRoute
@@ -292,11 +322,14 @@ export interface FileRouteTypes {
     | '/admin'
     | '/app'
     | '/admin/bookings'
+    | '/admin/capacity'
     | '/admin/customers'
     | '/admin/destination'
     | '/admin/manifests'
+    | '/admin/pricing'
     | '/admin/receiving'
     | '/admin/reports'
+    | '/admin/sailings'
     | '/admin/settings'
     | '/admin/users'
     | '/app/billing'
@@ -320,11 +353,14 @@ export interface FileRouteTypes {
     | '/signup'
     | '/app'
     | '/admin/bookings'
+    | '/admin/capacity'
     | '/admin/customers'
     | '/admin/destination'
     | '/admin/manifests'
+    | '/admin/pricing'
     | '/admin/receiving'
     | '/admin/reports'
+    | '/admin/sailings'
     | '/admin/settings'
     | '/admin/users'
     | '/app/billing'
@@ -350,11 +386,14 @@ export interface FileRouteTypes {
     | '/_authenticated/admin'
     | '/_authenticated/app'
     | '/_authenticated/admin/bookings'
+    | '/_authenticated/admin/capacity'
     | '/_authenticated/admin/customers'
     | '/_authenticated/admin/destination'
     | '/_authenticated/admin/manifests'
+    | '/_authenticated/admin/pricing'
     | '/_authenticated/admin/receiving'
     | '/_authenticated/admin/reports'
+    | '/_authenticated/admin/sailings'
     | '/_authenticated/admin/settings'
     | '/_authenticated/admin/users'
     | '/_authenticated/app/billing'
@@ -466,6 +505,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminBookingsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/capacity': {
+      id: '/_authenticated/admin/capacity'
+      path: '/capacity'
+      fullPath: '/admin/capacity'
+      preLoaderRoute: typeof AuthenticatedAdminCapacityRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/customers': {
       id: '/_authenticated/admin/customers'
       path: '/customers'
@@ -487,6 +533,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminManifestsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/pricing': {
+      id: '/_authenticated/admin/pricing'
+      path: '/pricing'
+      fullPath: '/admin/pricing'
+      preLoaderRoute: typeof AuthenticatedAdminPricingRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/receiving': {
       id: '/_authenticated/admin/receiving'
       path: '/receiving'
@@ -499,6 +552,13 @@ declare module '@tanstack/react-router' {
       path: '/reports'
       fullPath: '/admin/reports'
       preLoaderRoute: typeof AuthenticatedAdminReportsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/sailings': {
+      id: '/_authenticated/admin/sailings'
+      path: '/sailings'
+      fullPath: '/admin/sailings'
+      preLoaderRoute: typeof AuthenticatedAdminSailingsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/admin/settings': {
@@ -583,11 +643,14 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminBookingsRoute: typeof AuthenticatedAdminBookingsRoute
+  AuthenticatedAdminCapacityRoute: typeof AuthenticatedAdminCapacityRoute
   AuthenticatedAdminCustomersRoute: typeof AuthenticatedAdminCustomersRoute
   AuthenticatedAdminDestinationRoute: typeof AuthenticatedAdminDestinationRoute
   AuthenticatedAdminManifestsRoute: typeof AuthenticatedAdminManifestsRoute
+  AuthenticatedAdminPricingRoute: typeof AuthenticatedAdminPricingRoute
   AuthenticatedAdminReceivingRoute: typeof AuthenticatedAdminReceivingRoute
   AuthenticatedAdminReportsRoute: typeof AuthenticatedAdminReportsRoute
+  AuthenticatedAdminSailingsRoute: typeof AuthenticatedAdminSailingsRoute
   AuthenticatedAdminSettingsRoute: typeof AuthenticatedAdminSettingsRoute
   AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
@@ -595,11 +658,14 @@ interface AuthenticatedAdminRouteChildren {
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminBookingsRoute: AuthenticatedAdminBookingsRoute,
+  AuthenticatedAdminCapacityRoute: AuthenticatedAdminCapacityRoute,
   AuthenticatedAdminCustomersRoute: AuthenticatedAdminCustomersRoute,
   AuthenticatedAdminDestinationRoute: AuthenticatedAdminDestinationRoute,
   AuthenticatedAdminManifestsRoute: AuthenticatedAdminManifestsRoute,
+  AuthenticatedAdminPricingRoute: AuthenticatedAdminPricingRoute,
   AuthenticatedAdminReceivingRoute: AuthenticatedAdminReceivingRoute,
   AuthenticatedAdminReportsRoute: AuthenticatedAdminReportsRoute,
+  AuthenticatedAdminSailingsRoute: AuthenticatedAdminSailingsRoute,
   AuthenticatedAdminSettingsRoute: AuthenticatedAdminSettingsRoute,
   AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,

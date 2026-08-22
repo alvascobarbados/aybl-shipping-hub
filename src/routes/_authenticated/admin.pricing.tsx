@@ -69,7 +69,7 @@ function PricingRules() {
     if (!draft) return;
     const { error } = await supabase
       .from("price_rules")
-      .update(draft as unknown as Record<string, unknown>)
+      .update(draft as never)
       .eq("version", draft.version);
     if (error) {
       toast.error(error.message);

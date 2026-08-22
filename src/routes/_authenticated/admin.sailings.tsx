@@ -26,7 +26,9 @@ function AdminSailings() {
   const ports = Array.from(new Map(sailings.map((s) => [s.origin.id, s.origin])).values());
   const destination = sailings[0]?.destination;
 
-  async function setStatus(s: SailingRow, status: string) {
+  type SailingStatus = (typeof STATUSES)[number];
+
+  async function setStatus(s: SailingRow, status: SailingStatus) {
     const { error } = await supabase.from("sailings").update({ status }).eq("id", s.id);
     if (error) {
       toast.error(error.message);
@@ -83,7 +85,7 @@ function AdminSailings() {
                   <LiveValue value={s.availableCbm.toFixed(1)} unit="cbm" className="text-sm" tone="primary" />
                 </td>
                 <td className="px-5 py-3.5">
-                  <Select value={s.status} onValueChange={(v) => setStatus(s, v)}>
+                  <Select value={s.status} onValueChange={(v) => setStatus(s, v as SailingStatus)}>
                     <SelectTrigger className="h-8 w-36">
                       <SelectValue />
                     </SelectTrigger>
