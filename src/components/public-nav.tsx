@@ -88,9 +88,10 @@ export function LiveBar() {
   const { data: sailings } = useSailings();
   const open = (sailings ?? []).filter((s) => s.status === "open");
   const [i, setI] = useState(0);
-  const [clock, setClock] = useState(() => astTime(new Date(), true));
+  const [clock, setClock] = useState<string | null>(null);
 
   useEffect(() => {
+    setClock(astTime(new Date(), true));
     const t = setInterval(() => setClock(astTime(new Date(), true)), 1000);
     return () => clearInterval(t);
   }, []);
@@ -135,7 +136,7 @@ export function LiveBar() {
           ) : null}
         </div>
         <div className="ml-4 hidden h-full shrink-0 items-center gap-2 border-l border-board-2 pl-4 font-mono text-xs text-board-muted sm:flex">
-          Bridgetown <b className="font-semibold text-board-foreground">{clock}</b>
+          Bridgetown <b className="font-semibold text-board-foreground">{clock ?? "--:--:--"}</b>
         </div>
       </div>
     </div>
