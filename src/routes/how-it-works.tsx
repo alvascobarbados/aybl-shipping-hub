@@ -10,7 +10,7 @@ import { weekdayDate } from "@/lib/format";
 export const Route = createFileRoute("/how-it-works")({
   head: () => ({
     meta: [
-      { title: "How it works — booking LCL space with AYBL" },
+      { title: "How it works — booking LCL space with ABL Shipping" },
       { name: "description", content: "Book cubic metres, send cartons to our origin CFS, we load and seal, you collect in Bridgetown. Every milestone tracked." },
       { property: "og:title", content: "How ABL Shipping works" },
       { property: "og:description", content: "From booking space to collecting cargo in Bridgetown, step by step." },
