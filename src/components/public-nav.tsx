@@ -88,9 +88,10 @@ export function LiveBar() {
   const { data: sailings } = useSailings();
   const open = (sailings ?? []).filter((s) => s.status === "open");
   const [i, setI] = useState(0);
-  const [clock, setClock] = useState(() => astTime(new Date(), true));
+  const [clock, setClock] = useState<string | null>(null);
 
   useEffect(() => {
+    setClock(astTime(new Date(), true));
     const t = setInterval(() => setClock(astTime(new Date(), true)), 1000);
     return () => clearInterval(t);
   }, []);
