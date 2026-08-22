@@ -12,8 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as RatesRouteImport } from './routes/rates'
 import { Route as SailingsRouteImport } from './routes/sailings'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
@@ -45,6 +48,16 @@ const HowItWorksRoute = HowItWorksRouteImport.update({
   path: '/how-it-works',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuoteRoute = QuoteRouteImport.update({
+  id: '/quote',
+  path: '/quote',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RatesRoute = RatesRouteImport.update({
   id: '/rates',
   path: '/rates',
@@ -53,6 +66,11 @@ const RatesRoute = RatesRouteImport.update({
 const SailingsRoute = SailingsRouteImport.update({
   id: '/sailings',
   path: '/sailings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -148,8 +166,11 @@ const AuthenticatedAppTeamRoute = AuthenticatedAppTeamRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/login': typeof LoginRoute
+  '/quote': typeof QuoteRoute
   '/rates': typeof RatesRoute
   '/sailings': typeof SailingsRoute
+  '/signup': typeof SignupRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/app': typeof AuthenticatedAppRouteWithChildren
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
@@ -170,8 +191,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/login': typeof LoginRoute
+  '/quote': typeof QuoteRoute
   '/rates': typeof RatesRoute
   '/sailings': typeof SailingsRoute
+  '/signup': typeof SignupRoute
   '/app': typeof AuthenticatedAppRouteWithChildren
   '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
   '/admin/customers': typeof AuthenticatedAdminCustomersRoute
@@ -193,8 +217,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/how-it-works': typeof HowItWorksRoute
+  '/login': typeof LoginRoute
+  '/quote': typeof QuoteRoute
   '/rates': typeof RatesRoute
   '/sailings': typeof SailingsRoute
+  '/signup': typeof SignupRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/_authenticated/app': typeof AuthenticatedAppRouteWithChildren
   '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
@@ -217,8 +244,11 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/how-it-works'
+    | '/login'
+    | '/quote'
     | '/rates'
     | '/sailings'
+    | '/signup'
     | '/admin'
     | '/app'
     | '/admin/bookings'
@@ -239,8 +269,11 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/how-it-works'
+    | '/login'
+    | '/quote'
     | '/rates'
     | '/sailings'
+    | '/signup'
     | '/app'
     | '/admin/bookings'
     | '/admin/customers'
@@ -261,8 +294,11 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/how-it-works'
+    | '/login'
+    | '/quote'
     | '/rates'
     | '/sailings'
+    | '/signup'
     | '/_authenticated/admin'
     | '/_authenticated/app'
     | '/_authenticated/admin/bookings'
@@ -285,8 +321,11 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   HowItWorksRoute: typeof HowItWorksRoute
+  LoginRoute: typeof LoginRoute
+  QuoteRoute: typeof QuoteRoute
   RatesRoute: typeof RatesRoute
   SailingsRoute: typeof SailingsRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -312,6 +351,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HowItWorksRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quote': {
+      id: '/quote'
+      path: '/quote'
+      fullPath: '/quote'
+      preLoaderRoute: typeof QuoteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/rates': {
       id: '/rates'
       path: '/rates'
@@ -324,6 +377,13 @@ declare module '@tanstack/react-router' {
       path: '/sailings'
       fullPath: '/sailings'
       preLoaderRoute: typeof SailingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -504,8 +564,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   HowItWorksRoute: HowItWorksRoute,
+  LoginRoute: LoginRoute,
+  QuoteRoute: QuoteRoute,
   RatesRoute: RatesRoute,
   SailingsRoute: SailingsRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
