@@ -10,7 +10,7 @@ export const Route = createFileRoute("/sailings")({
   head: () => ({
     meta: [
       { title: "Sailings — Yantian & Shanghai to Bridgetown | ABL Shipping" },
-      { name: "description", content: "Live schedule of AYBL direct LCL sailings to Bridgetown with cut-offs, transit times and remaining space." },
+      { name: "description", content: "Live schedule of ABL Shipping direct LCL sailings to Bridgetown with cut-offs, transit times and remaining space." },
       { property: "og:title", content: "ABL Shipping sailings to Bridgetown" },
       { property: "og:description", content: "Cut-offs, sail dates and remaining space on every upcoming sailing." },
     ],

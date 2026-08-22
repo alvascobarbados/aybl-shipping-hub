@@ -13,7 +13,7 @@ export const Route = createFileRoute("/quote")({
   head: () => ({
     meta: [
       { title: "Get a quote — ABL Shipping LCL space to Bridgetown" },
-      { name: "description", content: "Price your shipment on a live AYBL sailing in 30 seconds. All-in, port to port, no account needed." },
+      { name: "description", content: "Price your shipment on a live ABL Shipping sailing in 30 seconds. All-in, port to port, no account needed." },
       { property: "og:title", content: "Get an ABL Shipping quote in 30 seconds" },
       { property: "og:description", content: "Live all-in pricing for LCL space to Bridgetown." },
     ],

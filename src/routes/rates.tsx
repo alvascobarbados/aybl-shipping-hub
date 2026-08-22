@@ -10,7 +10,7 @@ export const Route = createFileRoute("/rates")({
   head: () => ({
     meta: [
       { title: "Rates & fees — ABL Shipping direct LCL to Bridgetown" },
-      { name: "description", content: "How AYBL pricing works: lead-time steps, demand pricing, fare types and the full fee schedule per cubic metre." },
+      { name: "description", content: "How ABL Shipping pricing works: lead-time steps, demand pricing, fare types and the full fee schedule per cubic metre." },
       { property: "og:title", content: "ABL Shipping rates and fee schedule" },
       { property: "og:description", content: "Lead-time steps, demand pricing and every fee, per cubic metre." },
     ],

@@ -13,7 +13,7 @@ export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
       { title: "Log in — ABL Shipping" },
-      { name: "description", content: "Sign in to manage your AYBL bookings, sailings and documents." },
+      { name: "description", content: "Sign in to manage your ABL Shipping bookings, sailings and documents." },
       { property: "og:title", content: "Log in to ABL Shipping" },
       { property: "og:description", content: "Manage your bookings and sailings." },
     ],
