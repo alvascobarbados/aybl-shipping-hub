@@ -32,24 +32,24 @@ function LoginPage() {
     setBusy(true);
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     navigate({ to: "/app/sailings" });
   }
 
   async function magicLink() {
-    if (!email) return toast.error("Enter your email first");
+    if (!email) { toast.error("Enter your email first"); return; }
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: { emailRedirectTo: `${window.location.origin}/app/sailings` },
     });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Magic link sent — check your inbox");
   }
 
   async function google() {
     const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin });
-    if (result.error) return toast.error("Google sign-in failed");
-    if (result.redirected) return;
+    if (result.error) { toast.error("Google sign-in failed"); return; }
+    if (result.redirected) { return; }
     navigate({ to: "/app/sailings" });
   }
 
