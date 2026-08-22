@@ -136,7 +136,7 @@ export function LiveBar() {
           ) : null}
         </div>
         <div className="ml-4 hidden h-full shrink-0 items-center gap-2 border-l border-board-2 pl-4 font-mono text-xs text-board-muted sm:flex">
-          Bridgetown <b className="font-semibold text-board-foreground">{clock}</b>
+          Bridgetown <b className="font-semibold text-board-foreground">{clock ?? "--:--:--"}</b>
         </div>
       </div>
     </div>
