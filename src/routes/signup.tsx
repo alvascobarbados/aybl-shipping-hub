@@ -43,7 +43,7 @@ function SignupPage() {
     });
     setBusy(false);
     if (error) { toast.error(error.message); return; }
-    if (data.session) return navigate({ to: "/app/sailings" });
+    if (data.session) { navigate({ to: "/app/sailings" }); return; }
     setSent(true);
   }
 
