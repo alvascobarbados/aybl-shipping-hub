@@ -14,13 +14,13 @@ import { StatusPill } from "@/components/sailing-card";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AYBL — Direct LCL ocean freight, China to Bridgetown" },
+      { title: "ABL Shipping - Direct LCL ocean freight, China to Bridgetown" },
       {
         name: "description",
         content:
           "Book cubic metres of space on scheduled Yantian → Bridgetown and Shanghai → Bridgetown sailings. All-in pricing, fixed cut-offs, no transhipment through Panama.",
       },
-      { property: "og:title", content: "AYBL — Direct LCL ocean freight, China to Bridgetown" },
+      { property: "og:title", content: "ABL Shipping - Direct LCL ocean freight, China to Bridgetown" },
       {
         property: "og:description",
         content: "Book cubic metres of space on scheduled direct sailings to Bridgetown. All-in pricing, live availability.",

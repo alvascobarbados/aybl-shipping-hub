@@ -12,9 +12,9 @@ import { lovable } from "@/integrations/lovable/index";
 export const Route = createFileRoute("/signup")({
   head: () => ({
     meta: [
-      { title: "Create an account — AYBL" },
-      { name: "description", content: "Open an AYBL account to hold space on direct sailings from Yantian and Shanghai to Bridgetown." },
-      { property: "og:title", content: "Create an AYBL account" },
+      { title: "Create an account — ABL Shipping" },
+      { name: "description", content: "Open an ABL Shipping account to hold space on direct sailings from Yantian and Shanghai to Bridgetown." },
+      { property: "og:title", content: "Create an ABL Shipping account" },
       { property: "og:description", content: "Hold space on direct LCL sailings to Bridgetown." },
     ],
   }),
