@@ -10,33 +10,413 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as QuoteRouteImport } from './routes/quote'
+import { Route as RatesRouteImport } from './routes/rates'
+import { Route as SailingsRouteImport } from './routes/sailings'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminBookingsRouteImport } from './routes/_authenticated/admin.bookings'
+import { Route as AuthenticatedAdminCapacityRouteImport } from './routes/_authenticated/admin.capacity'
+import { Route as AuthenticatedAdminCustomersRouteImport } from './routes/_authenticated/admin.customers'
+import { Route as AuthenticatedAdminDestinationRouteImport } from './routes/_authenticated/admin.destination'
+import { Route as AuthenticatedAdminManifestsRouteImport } from './routes/_authenticated/admin.manifests'
+import { Route as AuthenticatedAdminPricingRouteImport } from './routes/_authenticated/admin.pricing'
+import { Route as AuthenticatedAdminReceivingRouteImport } from './routes/_authenticated/admin.receiving'
+import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin.reports'
+import { Route as AuthenticatedAdminSailingsRouteImport } from './routes/_authenticated/admin.sailings'
+import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authenticated/admin.settings'
+import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
+import { Route as AuthenticatedAppBillingRouteImport } from './routes/_authenticated/app.billing'
+import { Route as AuthenticatedAppCompanyRouteImport } from './routes/_authenticated/app.company'
+import { Route as AuthenticatedAppDocumentsRouteImport } from './routes/_authenticated/app.documents'
+import { Route as AuthenticatedAppSailingsRouteImport } from './routes/_authenticated/app.sailings'
+import { Route as AuthenticatedAppSettingsRouteImport } from './routes/_authenticated/app.settings'
+import { Route as AuthenticatedAppTeamRouteImport } from './routes/_authenticated/app.team'
+import { Route as AuthenticatedAppBookSailingIdRouteImport } from './routes/_authenticated/app.book.$sailingId'
+import { Route as AuthenticatedAppBookingsIndexRouteImport } from './routes/_authenticated/app.bookings.index'
+import { Route as AuthenticatedAppBookingsRefRouteImport } from './routes/_authenticated/app.bookings.$ref'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuoteRoute = QuoteRouteImport.update({
+  id: '/quote',
+  path: '/quote',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RatesRoute = RatesRouteImport.update({
+  id: '/rates',
+  path: '/rates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SailingsRoute = SailingsRouteImport.update({
+  id: '/sailings',
+  path: '/sailings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAppRoute = AuthenticatedAppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminBookingsRoute =
+  AuthenticatedAdminBookingsRouteImport.update({
+    id: '/bookings',
+    path: '/bookings',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminCapacityRoute =
+  AuthenticatedAdminCapacityRouteImport.update({
+    id: '/capacity',
+    path: '/capacity',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminCustomersRoute =
+  AuthenticatedAdminCustomersRouteImport.update({
+    id: '/customers',
+    path: '/customers',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminDestinationRoute =
+  AuthenticatedAdminDestinationRouteImport.update({
+    id: '/destination',
+    path: '/destination',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminManifestsRoute =
+  AuthenticatedAdminManifestsRouteImport.update({
+    id: '/manifests',
+    path: '/manifests',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminPricingRoute =
+  AuthenticatedAdminPricingRouteImport.update({
+    id: '/pricing',
+    path: '/pricing',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminReceivingRoute =
+  AuthenticatedAdminReceivingRouteImport.update({
+    id: '/receiving',
+    path: '/receiving',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminReportsRoute =
+  AuthenticatedAdminReportsRouteImport.update({
+    id: '/reports',
+    path: '/reports',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminSailingsRoute =
+  AuthenticatedAdminSailingsRouteImport.update({
+    id: '/sailings',
+    path: '/sailings',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminSettingsRoute =
+  AuthenticatedAdminSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAppBillingRoute = AuthenticatedAppBillingRouteImport.update({
+  id: '/billing',
+  path: '/billing',
+  getParentRoute: () => AuthenticatedAppRoute,
+} as any)
+const AuthenticatedAppCompanyRoute = AuthenticatedAppCompanyRouteImport.update({
+  id: '/company',
+  path: '/company',
+  getParentRoute: () => AuthenticatedAppRoute,
+} as any)
+const AuthenticatedAppDocumentsRoute =
+  AuthenticatedAppDocumentsRouteImport.update({
+    id: '/documents',
+    path: '/documents',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
+const AuthenticatedAppSailingsRoute =
+  AuthenticatedAppSailingsRouteImport.update({
+    id: '/sailings',
+    path: '/sailings',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
+const AuthenticatedAppSettingsRoute =
+  AuthenticatedAppSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
+const AuthenticatedAppTeamRoute = AuthenticatedAppTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => AuthenticatedAppRoute,
+} as any)
+const AuthenticatedAppBookSailingIdRoute =
+  AuthenticatedAppBookSailingIdRouteImport.update({
+    id: '/book/$sailingId',
+    path: '/book/$sailingId',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
+const AuthenticatedAppBookingsIndexRoute =
+  AuthenticatedAppBookingsIndexRouteImport.update({
+    id: '/bookings/',
+    path: '/bookings/',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
+const AuthenticatedAppBookingsRefRoute =
+  AuthenticatedAppBookingsRefRouteImport.update({
+    id: '/bookings/$ref',
+    path: '/bookings/$ref',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/login': typeof LoginRoute
+  '/quote': typeof QuoteRoute
+  '/rates': typeof RatesRoute
+  '/sailings': typeof SailingsRoute
+  '/signup': typeof SignupRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/app': typeof AuthenticatedAppRouteWithChildren
+  '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
+  '/admin/capacity': typeof AuthenticatedAdminCapacityRoute
+  '/admin/customers': typeof AuthenticatedAdminCustomersRoute
+  '/admin/destination': typeof AuthenticatedAdminDestinationRoute
+  '/admin/manifests': typeof AuthenticatedAdminManifestsRoute
+  '/admin/pricing': typeof AuthenticatedAdminPricingRoute
+  '/admin/receiving': typeof AuthenticatedAdminReceivingRoute
+  '/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/admin/sailings': typeof AuthenticatedAdminSailingsRoute
+  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/app/billing': typeof AuthenticatedAppBillingRoute
+  '/app/company': typeof AuthenticatedAppCompanyRoute
+  '/app/documents': typeof AuthenticatedAppDocumentsRoute
+  '/app/sailings': typeof AuthenticatedAppSailingsRoute
+  '/app/settings': typeof AuthenticatedAppSettingsRoute
+  '/app/team': typeof AuthenticatedAppTeamRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/app/book/$sailingId': typeof AuthenticatedAppBookSailingIdRoute
+  '/app/bookings/$ref': typeof AuthenticatedAppBookingsRefRoute
+  '/app/bookings/': typeof AuthenticatedAppBookingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/login': typeof LoginRoute
+  '/quote': typeof QuoteRoute
+  '/rates': typeof RatesRoute
+  '/sailings': typeof SailingsRoute
+  '/signup': typeof SignupRoute
+  '/app': typeof AuthenticatedAppRouteWithChildren
+  '/admin/bookings': typeof AuthenticatedAdminBookingsRoute
+  '/admin/capacity': typeof AuthenticatedAdminCapacityRoute
+  '/admin/customers': typeof AuthenticatedAdminCustomersRoute
+  '/admin/destination': typeof AuthenticatedAdminDestinationRoute
+  '/admin/manifests': typeof AuthenticatedAdminManifestsRoute
+  '/admin/pricing': typeof AuthenticatedAdminPricingRoute
+  '/admin/receiving': typeof AuthenticatedAdminReceivingRoute
+  '/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/admin/sailings': typeof AuthenticatedAdminSailingsRoute
+  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/app/billing': typeof AuthenticatedAppBillingRoute
+  '/app/company': typeof AuthenticatedAppCompanyRoute
+  '/app/documents': typeof AuthenticatedAppDocumentsRoute
+  '/app/sailings': typeof AuthenticatedAppSailingsRoute
+  '/app/settings': typeof AuthenticatedAppSettingsRoute
+  '/app/team': typeof AuthenticatedAppTeamRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
+  '/app/book/$sailingId': typeof AuthenticatedAppBookSailingIdRoute
+  '/app/bookings/$ref': typeof AuthenticatedAppBookingsRefRoute
+  '/app/bookings': typeof AuthenticatedAppBookingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/how-it-works': typeof HowItWorksRoute
+  '/login': typeof LoginRoute
+  '/quote': typeof QuoteRoute
+  '/rates': typeof RatesRoute
+  '/sailings': typeof SailingsRoute
+  '/signup': typeof SignupRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/_authenticated/app': typeof AuthenticatedAppRouteWithChildren
+  '/_authenticated/admin/bookings': typeof AuthenticatedAdminBookingsRoute
+  '/_authenticated/admin/capacity': typeof AuthenticatedAdminCapacityRoute
+  '/_authenticated/admin/customers': typeof AuthenticatedAdminCustomersRoute
+  '/_authenticated/admin/destination': typeof AuthenticatedAdminDestinationRoute
+  '/_authenticated/admin/manifests': typeof AuthenticatedAdminManifestsRoute
+  '/_authenticated/admin/pricing': typeof AuthenticatedAdminPricingRoute
+  '/_authenticated/admin/receiving': typeof AuthenticatedAdminReceivingRoute
+  '/_authenticated/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/_authenticated/admin/sailings': typeof AuthenticatedAdminSailingsRoute
+  '/_authenticated/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/_authenticated/app/billing': typeof AuthenticatedAppBillingRoute
+  '/_authenticated/app/company': typeof AuthenticatedAppCompanyRoute
+  '/_authenticated/app/documents': typeof AuthenticatedAppDocumentsRoute
+  '/_authenticated/app/sailings': typeof AuthenticatedAppSailingsRoute
+  '/_authenticated/app/settings': typeof AuthenticatedAppSettingsRoute
+  '/_authenticated/app/team': typeof AuthenticatedAppTeamRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/app/book/$sailingId': typeof AuthenticatedAppBookSailingIdRoute
+  '/_authenticated/app/bookings/$ref': typeof AuthenticatedAppBookingsRefRoute
+  '/_authenticated/app/bookings/': typeof AuthenticatedAppBookingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/how-it-works'
+    | '/login'
+    | '/quote'
+    | '/rates'
+    | '/sailings'
+    | '/signup'
+    | '/admin'
+    | '/app'
+    | '/admin/bookings'
+    | '/admin/capacity'
+    | '/admin/customers'
+    | '/admin/destination'
+    | '/admin/manifests'
+    | '/admin/pricing'
+    | '/admin/receiving'
+    | '/admin/reports'
+    | '/admin/sailings'
+    | '/admin/settings'
+    | '/admin/users'
+    | '/app/billing'
+    | '/app/company'
+    | '/app/documents'
+    | '/app/sailings'
+    | '/app/settings'
+    | '/app/team'
+    | '/admin/'
+    | '/app/book/$sailingId'
+    | '/app/bookings/$ref'
+    | '/app/bookings/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/how-it-works'
+    | '/login'
+    | '/quote'
+    | '/rates'
+    | '/sailings'
+    | '/signup'
+    | '/app'
+    | '/admin/bookings'
+    | '/admin/capacity'
+    | '/admin/customers'
+    | '/admin/destination'
+    | '/admin/manifests'
+    | '/admin/pricing'
+    | '/admin/receiving'
+    | '/admin/reports'
+    | '/admin/sailings'
+    | '/admin/settings'
+    | '/admin/users'
+    | '/app/billing'
+    | '/app/company'
+    | '/app/documents'
+    | '/app/sailings'
+    | '/app/settings'
+    | '/app/team'
+    | '/admin'
+    | '/app/book/$sailingId'
+    | '/app/bookings/$ref'
+    | '/app/bookings'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/how-it-works'
+    | '/login'
+    | '/quote'
+    | '/rates'
+    | '/sailings'
+    | '/signup'
+    | '/_authenticated/admin'
+    | '/_authenticated/app'
+    | '/_authenticated/admin/bookings'
+    | '/_authenticated/admin/capacity'
+    | '/_authenticated/admin/customers'
+    | '/_authenticated/admin/destination'
+    | '/_authenticated/admin/manifests'
+    | '/_authenticated/admin/pricing'
+    | '/_authenticated/admin/receiving'
+    | '/_authenticated/admin/reports'
+    | '/_authenticated/admin/sailings'
+    | '/_authenticated/admin/settings'
+    | '/_authenticated/admin/users'
+    | '/_authenticated/app/billing'
+    | '/_authenticated/app/company'
+    | '/_authenticated/app/documents'
+    | '/_authenticated/app/sailings'
+    | '/_authenticated/app/settings'
+    | '/_authenticated/app/team'
+    | '/_authenticated/admin/'
+    | '/_authenticated/app/book/$sailingId'
+    | '/_authenticated/app/bookings/$ref'
+    | '/_authenticated/app/bookings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  HowItWorksRoute: typeof HowItWorksRoute
+  LoginRoute: typeof LoginRoute
+  QuoteRoute: typeof QuoteRoute
+  RatesRoute: typeof RatesRoute
+  SailingsRoute: typeof SailingsRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +428,301 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quote': {
+      id: '/quote'
+      path: '/quote'
+      fullPath: '/quote'
+      preLoaderRoute: typeof QuoteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rates': {
+      id: '/rates'
+      path: '/rates'
+      fullPath: '/rates'
+      preLoaderRoute: typeof RatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sailings': {
+      id: '/sailings'
+      path: '/sailings'
+      fullPath: '/sailings'
+      preLoaderRoute: typeof SailingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/app': {
+      id: '/_authenticated/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AuthenticatedAppRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/bookings': {
+      id: '/_authenticated/admin/bookings'
+      path: '/bookings'
+      fullPath: '/admin/bookings'
+      preLoaderRoute: typeof AuthenticatedAdminBookingsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/capacity': {
+      id: '/_authenticated/admin/capacity'
+      path: '/capacity'
+      fullPath: '/admin/capacity'
+      preLoaderRoute: typeof AuthenticatedAdminCapacityRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/customers': {
+      id: '/_authenticated/admin/customers'
+      path: '/customers'
+      fullPath: '/admin/customers'
+      preLoaderRoute: typeof AuthenticatedAdminCustomersRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/destination': {
+      id: '/_authenticated/admin/destination'
+      path: '/destination'
+      fullPath: '/admin/destination'
+      preLoaderRoute: typeof AuthenticatedAdminDestinationRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/manifests': {
+      id: '/_authenticated/admin/manifests'
+      path: '/manifests'
+      fullPath: '/admin/manifests'
+      preLoaderRoute: typeof AuthenticatedAdminManifestsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/pricing': {
+      id: '/_authenticated/admin/pricing'
+      path: '/pricing'
+      fullPath: '/admin/pricing'
+      preLoaderRoute: typeof AuthenticatedAdminPricingRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/receiving': {
+      id: '/_authenticated/admin/receiving'
+      path: '/receiving'
+      fullPath: '/admin/receiving'
+      preLoaderRoute: typeof AuthenticatedAdminReceivingRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/reports': {
+      id: '/_authenticated/admin/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AuthenticatedAdminReportsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/sailings': {
+      id: '/_authenticated/admin/sailings'
+      path: '/sailings'
+      fullPath: '/admin/sailings'
+      preLoaderRoute: typeof AuthenticatedAdminSailingsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/settings': {
+      id: '/_authenticated/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AuthenticatedAdminSettingsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/users': {
+      id: '/_authenticated/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/app/billing': {
+      id: '/_authenticated/app/billing'
+      path: '/billing'
+      fullPath: '/app/billing'
+      preLoaderRoute: typeof AuthenticatedAppBillingRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/company': {
+      id: '/_authenticated/app/company'
+      path: '/company'
+      fullPath: '/app/company'
+      preLoaderRoute: typeof AuthenticatedAppCompanyRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/documents': {
+      id: '/_authenticated/app/documents'
+      path: '/documents'
+      fullPath: '/app/documents'
+      preLoaderRoute: typeof AuthenticatedAppDocumentsRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/sailings': {
+      id: '/_authenticated/app/sailings'
+      path: '/sailings'
+      fullPath: '/app/sailings'
+      preLoaderRoute: typeof AuthenticatedAppSailingsRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/settings': {
+      id: '/_authenticated/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AuthenticatedAppSettingsRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/team': {
+      id: '/_authenticated/app/team'
+      path: '/team'
+      fullPath: '/app/team'
+      preLoaderRoute: typeof AuthenticatedAppTeamRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/book/$sailingId': {
+      id: '/_authenticated/app/book/$sailingId'
+      path: '/book/$sailingId'
+      fullPath: '/app/book/$sailingId'
+      preLoaderRoute: typeof AuthenticatedAppBookSailingIdRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/bookings/': {
+      id: '/_authenticated/app/bookings/'
+      path: '/bookings'
+      fullPath: '/app/bookings/'
+      preLoaderRoute: typeof AuthenticatedAppBookingsIndexRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/bookings/$ref': {
+      id: '/_authenticated/app/bookings/$ref'
+      path: '/bookings/$ref'
+      fullPath: '/app/bookings/$ref'
+      preLoaderRoute: typeof AuthenticatedAppBookingsRefRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminBookingsRoute: typeof AuthenticatedAdminBookingsRoute
+  AuthenticatedAdminCapacityRoute: typeof AuthenticatedAdminCapacityRoute
+  AuthenticatedAdminCustomersRoute: typeof AuthenticatedAdminCustomersRoute
+  AuthenticatedAdminDestinationRoute: typeof AuthenticatedAdminDestinationRoute
+  AuthenticatedAdminManifestsRoute: typeof AuthenticatedAdminManifestsRoute
+  AuthenticatedAdminPricingRoute: typeof AuthenticatedAdminPricingRoute
+  AuthenticatedAdminReceivingRoute: typeof AuthenticatedAdminReceivingRoute
+  AuthenticatedAdminReportsRoute: typeof AuthenticatedAdminReportsRoute
+  AuthenticatedAdminSailingsRoute: typeof AuthenticatedAdminSailingsRoute
+  AuthenticatedAdminSettingsRoute: typeof AuthenticatedAdminSettingsRoute
+  AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminBookingsRoute: AuthenticatedAdminBookingsRoute,
+  AuthenticatedAdminCapacityRoute: AuthenticatedAdminCapacityRoute,
+  AuthenticatedAdminCustomersRoute: AuthenticatedAdminCustomersRoute,
+  AuthenticatedAdminDestinationRoute: AuthenticatedAdminDestinationRoute,
+  AuthenticatedAdminManifestsRoute: AuthenticatedAdminManifestsRoute,
+  AuthenticatedAdminPricingRoute: AuthenticatedAdminPricingRoute,
+  AuthenticatedAdminReceivingRoute: AuthenticatedAdminReceivingRoute,
+  AuthenticatedAdminReportsRoute: AuthenticatedAdminReportsRoute,
+  AuthenticatedAdminSailingsRoute: AuthenticatedAdminSailingsRoute,
+  AuthenticatedAdminSettingsRoute: AuthenticatedAdminSettingsRoute,
+  AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
+interface AuthenticatedAppRouteChildren {
+  AuthenticatedAppBillingRoute: typeof AuthenticatedAppBillingRoute
+  AuthenticatedAppCompanyRoute: typeof AuthenticatedAppCompanyRoute
+  AuthenticatedAppDocumentsRoute: typeof AuthenticatedAppDocumentsRoute
+  AuthenticatedAppSailingsRoute: typeof AuthenticatedAppSailingsRoute
+  AuthenticatedAppSettingsRoute: typeof AuthenticatedAppSettingsRoute
+  AuthenticatedAppTeamRoute: typeof AuthenticatedAppTeamRoute
+  AuthenticatedAppBookSailingIdRoute: typeof AuthenticatedAppBookSailingIdRoute
+  AuthenticatedAppBookingsRefRoute: typeof AuthenticatedAppBookingsRefRoute
+  AuthenticatedAppBookingsIndexRoute: typeof AuthenticatedAppBookingsIndexRoute
+}
+
+const AuthenticatedAppRouteChildren: AuthenticatedAppRouteChildren = {
+  AuthenticatedAppBillingRoute: AuthenticatedAppBillingRoute,
+  AuthenticatedAppCompanyRoute: AuthenticatedAppCompanyRoute,
+  AuthenticatedAppDocumentsRoute: AuthenticatedAppDocumentsRoute,
+  AuthenticatedAppSailingsRoute: AuthenticatedAppSailingsRoute,
+  AuthenticatedAppSettingsRoute: AuthenticatedAppSettingsRoute,
+  AuthenticatedAppTeamRoute: AuthenticatedAppTeamRoute,
+  AuthenticatedAppBookSailingIdRoute: AuthenticatedAppBookSailingIdRoute,
+  AuthenticatedAppBookingsRefRoute: AuthenticatedAppBookingsRefRoute,
+  AuthenticatedAppBookingsIndexRoute: AuthenticatedAppBookingsIndexRoute,
+}
+
+const AuthenticatedAppRouteWithChildren =
+  AuthenticatedAppRoute._addFileChildren(AuthenticatedAppRouteChildren)
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+  AuthenticatedAppRoute: typeof AuthenticatedAppRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
+  AuthenticatedAppRoute: AuthenticatedAppRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  HowItWorksRoute: HowItWorksRoute,
+  LoginRoute: LoginRoute,
+  QuoteRoute: QuoteRoute,
+  RatesRoute: RatesRoute,
+  SailingsRoute: SailingsRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
