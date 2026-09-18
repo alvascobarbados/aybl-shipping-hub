@@ -8,6 +8,20 @@
       "when": 1789726123271,
       "tag": "0000_public_site_contact_tables",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789727204388,
+      "tag": "0001_public_reference_read_access",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789727231685,
+      "tag": "0002_seed_ports_sailings_price_rules",
+      "breakpoints": true
     }
   ]
 }

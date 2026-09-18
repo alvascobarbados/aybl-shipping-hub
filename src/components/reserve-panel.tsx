@@ -1,4 +1,4 @@
-import { useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Minus, Plus } from "lucide-react";
 
@@ -10,7 +10,15 @@ import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/use-auth";
 import { countdown, shortDate, usd, weekdayDate } from "@/lib/format";
 import { bookPath } from "@/lib/reserve";
-import { boardStatus, laneLabel, quoteFor, usePriceRules, useSailings, type SailingRow } from "@/lib/queries";
+import {
+  boardStatus,
+  laneLabel,
+  quoteFor,
+  useOriginPorts,
+  usePriceRules,
+  useSailings,
+  type SailingRow,
+} from "@/lib/queries";
 import { cn } from "@/lib/utils";
 
 /**
@@ -20,13 +28,19 @@ import { cn } from "@/lib/utils";
 export function ReservePanel() {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { data: sailings = [] } = useSailings();
+  const { data: sailings = [], isPending: sailingsLoading } = useSailings();
   const { data: rules } = usePriceRules();
+  const { data: ports = [], isPending: portsLoading } = useOriginPorts();
+
+  const loading = sailingsLoading || portsLoading;
 
   const bookable = sailings.filter((s) => boardStatus(s) !== "closed");
-  const lanes = Array.from(new Map(bookable.map((s) => [s.origin.code, s.origin])).values());
+  // Lanes always come from the port list, so both chips show even with no open sailings.
+  const lanes = ports.length
+    ? ports
+    : Array.from(new Map(bookable.map((s) => [s.origin.code, s.origin])).values());
   // Default to the lane whose next cargo cut-off is soonest.
-  const soonest = bookable[0]?.origin.code ?? null;
+  const soonest = bookable[0]?.origin.code ?? lanes[0]?.code ?? null;
 
   const [lane, setLane] = useState<string | null>(null);
   const [pickedId, setPickedId] = useState<string | null>(null);
@@ -119,8 +133,22 @@ export function ReservePanel() {
               </li>
             );
           })}
-          {laneSailings.length === 0 ? (
-            <li className="px-3 py-6 text-sm text-board-muted">No open sailings on this lane right now.</li>
+          {loading
+            ? [0, 1, 2].map((i) => (
+                <li key={i} className="px-3 py-4">
+                  <div className="h-4 w-28 animate-pulse rounded bg-board-2" />
+                  <div className="mt-2 h-3 w-56 animate-pulse rounded bg-board-2" />
+                </li>
+              ))
+            : null}
+          {!loading && laneSailings.length === 0 ? (
+            <li className="px-3 py-6 text-sm text-board-muted">
+              No open sailings on this lane right now.{" "}
+              <Link to="/contact" className="font-semibold text-board-foreground underline">
+                Join the waitlist or contact us
+              </Link>{" "}
+              and we'll tell you as soon as the next one opens.
+            </li>
           ) : null}
         </ul>
       </div>
@@ -198,8 +226,21 @@ export function ReservePanel() {
                 </div>
               </div>
             </>
+          ) : loading || (sailing && !quote) ? (
+            <div className="space-y-3">
+              <div className="h-4 w-48 animate-pulse rounded bg-surface" />
+              <div className="h-10 w-40 animate-pulse rounded bg-surface" />
+              <div className="h-4 w-32 animate-pulse rounded bg-surface" />
+            </div>
           ) : (
-            <p className="text-sm text-muted-foreground">Loading live sailings…</p>
+            <div className="text-sm text-secondary-foreground">
+              <p>No sailings are open on this lane yet.</p>
+              <p className="mt-2">
+                <Link to="/contact" className="font-semibold text-primary">
+                  Join the waitlist or contact us →
+                </Link>
+              </p>
+            </div>
           )}
         </div>
       </div>
