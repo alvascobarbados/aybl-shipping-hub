@@ -47,7 +47,7 @@ export function ReservePanel() {
 
   function reserve() {
     if (!sailing) return;
-    const search = { cbm, ...(grossKg > 0 ? { kg: grossKg } : {}) };
+    const search = { cbm, kg: grossKg > 0 ? grossKg : undefined };
     if (user) {
       navigate({ to: "/app/book/$sailingId", params: { sailingId: sailing.id }, search });
       return;
