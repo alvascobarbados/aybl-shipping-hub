@@ -226,8 +226,21 @@ export function ReservePanel() {
                 </div>
               </div>
             </>
+          ) : loading || (sailing && !quote) ? (
+            <div className="space-y-3">
+              <div className="h-4 w-48 animate-pulse rounded bg-surface" />
+              <div className="h-10 w-40 animate-pulse rounded bg-surface" />
+              <div className="h-4 w-32 animate-pulse rounded bg-surface" />
+            </div>
           ) : (
-            <p className="text-sm text-muted-foreground">Loading live sailings…</p>
+            <div className="text-sm text-secondary-foreground">
+              <p>No sailings are open on this lane yet.</p>
+              <p className="mt-2">
+                <Link to="/contact" className="font-semibold text-primary">
+                  Join the waitlist or contact us →
+                </Link>
+              </p>
+            </div>
           )}
         </div>
       </div>
