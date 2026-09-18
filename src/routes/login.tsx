@@ -15,6 +15,7 @@ export const Route = createFileRoute("/login")({
     next: typeof s["next"] === "string" ? (s["next"] as string) : undefined,
     cbm: num(s["cbm"]),
     kg: num(s["kg"]),
+    reserve: typeof s["reserve"] === "string" ? (s["reserve"] as string) : undefined,
   }),
   head: () => ({
     meta: [
@@ -36,6 +37,10 @@ function LoginPage() {
   const [busy, setBusy] = useState(false);
 
   function onward() {
+    if (search.reserve) {
+      navigate({ to: "/", search: { reserve: search.reserve, cbm: search.cbm } });
+      return;
+    }
     if (sailingId) {
       navigate({
         to: "/app/book/$sailingId",
@@ -110,7 +115,7 @@ function LoginPage() {
             No account?{" "}
             <Link
               to="/signup"
-              search={{ next: search.next, cbm: search.cbm, kg: search.kg }}
+              search={{ next: search.next, cbm: search.cbm, kg: search.kg, reserve: search.reserve }}
               className="font-semibold text-primary"
             >
               Create one

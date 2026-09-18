@@ -66,7 +66,7 @@ export function ReservePanel() {
       navigate({ to: "/app/book/$sailingId", params: { sailingId: sailing.id }, search });
       return;
     }
-    navigate({ to: "/signup", search: { next: bookPath(sailing.id), ...search } });
+    navigate({ to: "/signup", search: { next: bookPath(sailing.id), ...search, reserve: undefined } });
   }
 
   return (

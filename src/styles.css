@@ -46,6 +46,11 @@
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-line: var(--line);
+  --color-faint: var(--faint);
+  --color-warning-ink: var(--warning-ink);
+  --color-danger-ink: var(--danger-ink);
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-board: var(--board);
@@ -103,6 +108,11 @@
   --destructive-foreground: oklch(1 0 0);
 
   --border: oklch(0.925 0.011 252.1);
+  --border-strong: #b8c2d0;
+  --line: #c9d2de;
+  --faint: #a9b4c4;
+  --warning-ink: #8a5a12;
+  --danger-ink: #a33327;
   --input: oklch(0.925 0.011 252.1);
   --ring: oklch(0.428 0.168 260.5);
 
@@ -197,4 +207,45 @@
 @utility board-flip {
   display: inline-block;
   animation: board-flip 0.5s ease-out;
+}
+
+/* Container bar: crawling pending stripes + a soft highlight sweep. */
+@keyframes bar-crawl {
+  from { background-position: 0 0; }
+  to { background-position: 17px 0; }
+}
+
+@keyframes bar-sweep {
+  0% { transform: translateX(-120%); }
+  60% { transform: translateX(320%); }
+  100% { transform: translateX(320%); }
+}
+
+@utility bar-pending {
+  background: repeating-linear-gradient(135deg, #ffc247 0 6px, #f0ae24 6px 12px);
+  background-size: 17px 17px;
+  animation: bar-crawl 1.4s linear infinite;
+}
+
+@utility bar-sweep {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 34%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.45) 50%, rgba(255, 255, 255, 0) 100%);
+  animation: bar-sweep 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes indeterminate {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(400%); }
+}
+
+@utility indeterminate {
+  animation: indeterminate 1.1s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar-pending, .bar-sweep, .indeterminate { animation: none; }
 }

@@ -355,6 +355,7 @@ export type Database = {
         Row: {
           cfs_address: string | null
           cfs_address_zh: string | null
+          city: string | null
           code: string
           country: string
           created_at: string
@@ -366,6 +367,7 @@ export type Database = {
         Insert: {
           cfs_address?: string | null
           cfs_address_zh?: string | null
+          city?: string | null
           code: string
           country: string
           created_at?: string
@@ -377,6 +379,7 @@ export type Database = {
         Update: {
           cfs_address?: string | null
           cfs_address_zh?: string | null
+          city?: string | null
           code?: string
           country?: string
           created_at?: string
@@ -518,6 +521,7 @@ export type Database = {
           id: string
           notes: string | null
           origin_port_id: string
+          shipment_no: string | null
           status: Database["public"]["Enums"]["sailing_status"]
           updated_at: string
           voyage_no: string
@@ -533,6 +537,7 @@ export type Database = {
           id?: string
           notes?: string | null
           origin_port_id: string
+          shipment_no?: string | null
           status?: Database["public"]["Enums"]["sailing_status"]
           updated_at?: string
           voyage_no: string
@@ -548,6 +553,7 @@ export type Database = {
           id?: string
           notes?: string | null
           origin_port_id?: string
+          shipment_no?: string | null
           status?: Database["public"]["Enums"]["sailing_status"]
           updated_at?: string
           voyage_no?: string
@@ -568,6 +574,21 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      shipment_counters: {
+        Row: {
+          country_code: string
+          last_no: number
+        }
+        Insert: {
+          country_code: string
+          last_no?: number
+        }
+        Update: {
+          country_code?: string
+          last_no?: number
+        }
+        Relationships: []
       }
       site_settings: {
         Row: {
@@ -710,6 +731,7 @@ export type Database = {
           held_cbm: number | null
           last_change_at: string | null
           sailing_id: string | null
+          shipment_no: string | null
           voyage_no: string | null
         }
         Relationships: []

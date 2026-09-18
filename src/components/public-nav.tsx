@@ -13,7 +13,6 @@ import { usd } from "@/lib/format";
 
 const links = [
   { to: "/sailings", label: "Sailings" },
-  { to: "/rates", label: "Rates" },
   { to: "/how-it-works", label: "How it works" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
@@ -25,7 +24,7 @@ export function PublicNav() {
   return (
     <nav className="sticky top-0 z-30 h-16 border-b border-border bg-background">
       <div className="wrap flex h-full items-center gap-8">
-        <Link to="/" className="shrink-0">
+        <Link to="/" search={{ reserve: undefined, cbm: undefined }} className="shrink-0">
           <Wordmark />
         </Link>
         <div className="hidden items-center gap-6 md:flex">
@@ -42,25 +41,26 @@ export function PublicNav() {
         </div>
         <div className="ml-auto flex items-center gap-2">
           {user ? (
-            <Button asChild size="sm">
-              <Link to="/app/sailings">My account</Link>
-            </Button>
+            <Link
+              to="/app/sailings"
+              className="hidden px-2 text-sm font-medium text-secondary-foreground hover:text-foreground sm:block"
+            >
+              My account
+            </Link>
           ) : (
-            <>
-              <Link
-                to="/login"
-                search={{ next: undefined, cbm: undefined, kg: undefined }}
-                className="hidden px-2 text-sm font-medium text-secondary-foreground hover:text-foreground sm:block"
-              >
-                Log in
-              </Link>
-              <Button asChild size="sm">
-                <Link to="/" hash="reserve">
-                  Reserve space
-                </Link>
-              </Button>
-            </>
+            <Link
+              to="/login"
+              search={{ next: undefined, cbm: undefined, kg: undefined, reserve: undefined }}
+              className="hidden px-2 text-sm font-medium text-secondary-foreground hover:text-foreground sm:block"
+            >
+              Log in
+            </Link>
           )}
+          <Button asChild size="sm">
+            <Link to="/" hash="search" search={{ reserve: undefined, cbm: undefined }}>
+              Reserve space
+            </Link>
+          </Button>
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" className="md:hidden" aria-label="Menu">
@@ -77,7 +77,7 @@ export function PublicNav() {
                 ))}
                 <Link
                   to="/login"
-                  search={{ next: undefined, cbm: undefined, kg: undefined }}
+                  search={{ next: undefined, cbm: undefined, kg: undefined, reserve: undefined }}
                   className="rounded-md px-3 py-2.5 text-base font-medium hover:bg-surface"
                 >
                   Log in
@@ -85,7 +85,7 @@ export function PublicNav() {
               </div>
               <div className="mt-auto p-4">
                 <Button asChild size="lg" className="w-full">
-                  <Link to="/" hash="reserve">
+                  <Link to="/" hash="search" search={{ reserve: undefined, cbm: undefined }}>
                     Reserve space
                   </Link>
                 </Button>
