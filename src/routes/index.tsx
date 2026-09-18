@@ -83,7 +83,7 @@ function Landing() {
 
   return (
     <PublicLayout>
-      <section id="search" className="scroll-mt-20 border-b border-border bg-surface py-10 sm:py-12">
+      <section id="search" className="scroll-mt-20 bg-surface py-10 sm:py-12">
         <div className="wrap max-w-[1120px]">
           <h1 className="text-[28px] leading-[1.08] font-extrabold tracking-[-0.03em] sm:text-4xl">
             Reserve space on the next sailing to Bridgetown.
