@@ -56,10 +56,12 @@ export function SailingCard({
   sailing,
   allInOneCbm,
   href,
+  action,
 }: {
   sailing: SailingRow;
   allInOneCbm?: number | undefined;
   href?: string | undefined;
+  action?: React.ReactNode;
 }) {
   const status = boardStatus(sailing);
   const waitlist = status === "waitlist";
