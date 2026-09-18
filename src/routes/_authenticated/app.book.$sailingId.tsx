@@ -10,11 +10,16 @@ import { useSailings, laneLabel } from "@/lib/queries";
 import type { Quote } from "@/lib/pricing";
 
 export const Route = createFileRoute("/_authenticated/app/book/$sailingId")({
+  validateSearch: (s: Record<string, unknown>) => ({
+    cbm: num(s["cbm"]),
+    kg: num(s["kg"]),
+  }),
   component: BookPage,
 });
 
 function BookPage() {
   const { sailingId } = Route.useParams();
+  const { cbm, kg } = Route.useSearch();
   const { data: sailings = [], isLoading } = useSailings();
   const navigate = useNavigate();
   const [busy, setBusy] = useState(false);
