@@ -83,7 +83,7 @@ function Landing() {
 
   return (
     <PublicLayout>
-      <section id="search" className="scroll-mt-20 border-b border-border bg-surface py-10 sm:py-12">
+      <section id="search" className="scroll-mt-20 bg-surface py-10 sm:py-12">
         <div className="wrap max-w-[1120px]">
           <h1 className="text-[28px] leading-[1.08] font-extrabold tracking-[-0.03em] sm:text-4xl">
             Reserve space on the next sailing to Bridgetown.
@@ -97,7 +97,8 @@ function Landing() {
         </div>
       </section>
 
-      <section className="wrap max-w-[1120px] py-8">
+      <section className="bg-surface pb-12">
+        <div className="wrap max-w-[1120px] pt-2">
         <ResultsHeader
           lane={laneLabel}
           count={rows.length}
@@ -108,16 +109,16 @@ function Landing() {
           mostSpaceSub={mostSpaceRow ? `${freeCbm(mostSpaceRow).toFixed(1)} cbm` : null}
         />
 
-        <div className="mt-5">
+        <div className="mt-5 space-y-3">
           {isPending ? (
             [0, 1, 2].map((i) => (
-              <div key={i} className="border-t border-border py-6">
+              <div key={i} className="rounded-xl border border-border bg-card p-4 lg:px-6 lg:py-[22px]">
                 <div className="h-4 w-40 animate-pulse rounded bg-surface-2" />
                 <div className="mt-3 h-4 w-full animate-pulse rounded bg-surface-2" />
               </div>
             ))
           ) : rows.length === 0 ? (
-            <div className="border-t border-border py-10 text-center">
+            <div className="rounded-xl border border-border bg-card p-4 py-10 text-center lg:px-6">
               <p className="text-sm font-semibold">No sailings match.</p>
               <Button
                 variant="outline"
@@ -142,8 +143,9 @@ function Landing() {
           )}
         </div>
 
-        <div className="mt-6 border-t border-border pt-4">
+        <div className="mt-6">
           <Legend />
+        </div>
         </div>
       </section>
 

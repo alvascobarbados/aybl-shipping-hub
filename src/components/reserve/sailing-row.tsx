@@ -22,7 +22,7 @@ export function SailingResultRow({ sailing, cbm, onCbm, onReserve, soonest, most
   const full = free <= 0;
 
   return (
-    <div className="flex flex-col gap-3.5 border-t border-border py-4 lg:grid lg:grid-cols-[minmax(210px,1fr)_minmax(260px,1.2fr)_minmax(300px,1.3fr)] lg:items-center lg:gap-6">
+    <div className="flex flex-col gap-3.5 rounded-xl border border-border bg-card p-4 lg:grid lg:grid-cols-[minmax(210px,1fr)_minmax(260px,1.2fr)_minmax(300px,1.3fr)] lg:items-center lg:gap-6 lg:px-6 lg:py-[22px]">
       <div className="flex flex-col gap-2">
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
           <span className="font-mono text-[15px] font-semibold tabular-nums">{sailing.shipment_no}</span>
