@@ -58,7 +58,7 @@ export function PortalShell({
     await queryClient.cancelQueries();
     queryClient.clear();
     await supabase.auth.signOut();
-    navigate({ to: "/login", replace: true });
+    navigate({ to: "/login", replace: true, search: { next: undefined, cbm: undefined, kg: undefined } });
   }
 
   const items = (
