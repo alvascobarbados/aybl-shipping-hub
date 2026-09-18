@@ -227,6 +227,78 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_requests: {
+        Row: {
+          cbm: number | null
+          company: string | null
+          created_at: string
+          customer_email: string | null
+          customer_name: string | null
+          email: string
+          handled_at: string | null
+          handled_by: string | null
+          id: string
+          message: string | null
+          name: string
+          phone: string | null
+          role: string
+          sailing_id: string | null
+          side: string
+          status: string
+        }
+        Insert: {
+          cbm?: number | null
+          company?: string | null
+          created_at?: string
+          customer_email?: string | null
+          customer_name?: string | null
+          email: string
+          handled_at?: string | null
+          handled_by?: string | null
+          id?: string
+          message?: string | null
+          name: string
+          phone?: string | null
+          role?: string
+          sailing_id?: string | null
+          side?: string
+          status?: string
+        }
+        Update: {
+          cbm?: number | null
+          company?: string | null
+          created_at?: string
+          customer_email?: string | null
+          customer_name?: string | null
+          email?: string
+          handled_at?: string | null
+          handled_by?: string | null
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string | null
+          role?: string
+          sailing_id?: string | null
+          side?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contact_requests_sailing_id_fkey"
+            columns: ["sailing_id"]
+            isOneToOne: false
+            referencedRelation: "sailing_availability"
+            referencedColumns: ["sailing_id"]
+          },
+          {
+            foreignKeyName: "contact_requests_sailing_id_fkey"
+            columns: ["sailing_id"]
+            isOneToOne: false
+            referencedRelation: "sailings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       documents: {
         Row: {
           booking_id: string | null
@@ -496,6 +568,63 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      site_settings: {
+        Row: {
+          address: string | null
+          address_zh: string | null
+          audience_note: string | null
+          company_name: string | null
+          contact_name: string | null
+          email: string | null
+          hours: string | null
+          hours_zh: string | null
+          id: string
+          label: string
+          phone: string | null
+          side: string
+          timezone: string | null
+          updated_at: string
+          wechat: string | null
+          whatsapp: string | null
+        }
+        Insert: {
+          address?: string | null
+          address_zh?: string | null
+          audience_note?: string | null
+          company_name?: string | null
+          contact_name?: string | null
+          email?: string | null
+          hours?: string | null
+          hours_zh?: string | null
+          id?: string
+          label: string
+          phone?: string | null
+          side: string
+          timezone?: string | null
+          updated_at?: string
+          wechat?: string | null
+          whatsapp?: string | null
+        }
+        Update: {
+          address?: string | null
+          address_zh?: string | null
+          audience_note?: string | null
+          company_name?: string | null
+          contact_name?: string | null
+          email?: string | null
+          hours?: string | null
+          hours_zh?: string | null
+          id?: string
+          label?: string
+          phone?: string | null
+          side?: string
+          timezone?: string | null
+          updated_at?: string
+          wechat?: string | null
+          whatsapp?: string | null
+        }
+        Relationships: []
       }
       user_roles: {
         Row: {
