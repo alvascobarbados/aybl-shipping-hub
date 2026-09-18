@@ -98,11 +98,24 @@ export async function fetchPriceRules(): Promise<PriceRules> {
   return data as unknown as PriceRules;
 }
 
+export async function fetchOriginPorts(): Promise<PortRow[]> {
+  const { data, error } = await supabase
+    .from("ports")
+    .select("*")
+    .neq("code", "BBBGI")
+    .order("name", { ascending: true });
+  if (error) throw error;
+  return (data ?? []) as unknown as PortRow[];
+}
+
 export const useSailings = () =>
   useQuery({ queryKey: ["sailings"], queryFn: fetchSailings, staleTime: 15_000 });
 
 export const usePriceRules = () =>
   useQuery({ queryKey: ["price_rules"], queryFn: fetchPriceRules, staleTime: 300_000 });
+
+export const useOriginPorts = () =>
+  useQuery({ queryKey: ["ports"], queryFn: fetchOriginPorts, staleTime: 300_000 });
 
 /** Quote a sailing straight from live data — never from typed-in numbers. */
 export function quoteFor(
