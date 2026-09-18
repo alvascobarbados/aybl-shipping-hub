@@ -56,10 +56,12 @@ export function SailingCard({
   sailing,
   allInOneCbm,
   href,
+  action,
 }: {
   sailing: SailingRow;
   allInOneCbm?: number | undefined;
   href?: string | undefined;
+  action?: React.ReactNode;
 }) {
   const status = boardStatus(sailing);
   const waitlist = status === "waitlist";
@@ -106,9 +108,13 @@ export function SailingCard({
             </Fact>
           ) : null}
         </div>
-        <Button asChild variant={waitlist ? "outline" : "default"}>
-          <Link to={href ?? "/quote"}>{waitlist ? "Join waitlist" : "Get quote"}</Link>
-        </Button>
+        {action ?? (
+          <Button asChild variant={waitlist ? "outline" : "default"}>
+            <Link to={href ?? "/"} hash="reserve">
+              {waitlist ? "Join waitlist" : "Reserve space"}
+            </Link>
+          </Button>
+        )}
       </div>
     </article>
   );

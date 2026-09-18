@@ -12,10 +12,11 @@ import { laneLabel, useSailings, type SailingRow } from "@/lib/queries";
 import { usd } from "@/lib/format";
 
 const links = [
-  { to: "/how-it-works", label: "How it works" },
   { to: "/sailings", label: "Sailings" },
   { to: "/rates", label: "Rates" },
-  { to: "/quote", label: "Get a quote" },
+  { to: "/how-it-works", label: "How it works" },
+  { to: "/about", label: "About" },
+  { to: "/contact", label: "Contact" },
 ] as const;
 
 export function PublicNav() {
@@ -27,8 +28,8 @@ export function PublicNav() {
         <Link to="/" className="shrink-0">
           <Wordmark />
         </Link>
-        <div className="hidden items-center gap-7 md:flex">
-          {links.slice(0, 3).map((l) => (
+        <div className="hidden items-center gap-6 md:flex">
+          {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
@@ -48,12 +49,15 @@ export function PublicNav() {
             <>
               <Link
                 to="/login"
+                search={{ next: undefined, cbm: undefined, kg: undefined }}
                 className="hidden px-2 text-sm font-medium text-secondary-foreground hover:text-foreground sm:block"
               >
                 Log in
               </Link>
               <Button asChild size="sm">
-                <Link to="/quote">Get a quote</Link>
+                <Link to="/" hash="reserve">
+                  Reserve space
+                </Link>
               </Button>
             </>
           )}
@@ -63,7 +67,7 @@ export function PublicNav() {
                 <Menu />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-72">
+            <SheetContent side="right" className="flex w-72 flex-col">
               <SheetTitle className="sr-only">Menu</SheetTitle>
               <div className="mt-10 flex flex-col gap-1 px-4">
                 {links.map((l) => (
@@ -71,9 +75,20 @@ export function PublicNav() {
                     {l.label}
                   </Link>
                 ))}
-                <Link to="/login" className="rounded-md px-3 py-2.5 text-base font-medium hover:bg-surface">
+                <Link
+                  to="/login"
+                  search={{ next: undefined, cbm: undefined, kg: undefined }}
+                  className="rounded-md px-3 py-2.5 text-base font-medium hover:bg-surface"
+                >
                   Log in
                 </Link>
+              </div>
+              <div className="mt-auto p-4">
+                <Button asChild size="lg" className="w-full">
+                  <Link to="/" hash="reserve">
+                    Reserve space
+                  </Link>
+                </Button>
               </div>
             </SheetContent>
           </Sheet>

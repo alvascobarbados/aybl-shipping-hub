@@ -39,13 +39,15 @@ export function QuoteForm({
   sailing,
   cta,
   onQuote,
+  initial,
 }: {
   sailing: SailingRow;
   cta: (quote: Quote, values: QuoteFormValues) => ReactNode;
   onQuote?: ((q: Quote, v: QuoteFormValues) => void) | undefined;
+  initial?: Partial<QuoteFormValues> | undefined;
 }) {
   const { data: rules } = usePriceRules();
-  const [v, setV] = useState<QuoteFormValues>(defaultValues);
+  const [v, setV] = useState<QuoteFormValues>({ ...defaultValues, ...initial });
   const set = <K extends keyof QuoteFormValues>(k: K, val: QuoteFormValues[K]) => setV((p) => ({ ...p, [k]: val }));
 
   const quote = useMemo(() => {

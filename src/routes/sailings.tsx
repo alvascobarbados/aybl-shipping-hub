@@ -4,6 +4,7 @@ import { useState } from "react";
 import { PublicLayout } from "@/components/public-layout";
 import { PageHeader } from "@/components/page";
 import { SailingCard } from "@/components/sailing-card";
+import { ReserveButton } from "@/components/reserve-button";
 import { quoteFor, useSailings, usePriceRules } from "@/lib/queries";
 
 export const Route = createFileRoute("/sailings")({
@@ -53,7 +54,7 @@ function PublicSailings() {
               key={s.id}
               sailing={s}
               allInOneCbm={rules ? quoteFor(s, rules, { cbm: 1 }).total : undefined}
-              href="/quote"
+              action={<ReserveButton sailing={s} />}
             />
           ))}
         </div>
