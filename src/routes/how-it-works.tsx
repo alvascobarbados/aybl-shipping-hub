@@ -5,7 +5,7 @@ import { PageHeader, Panel } from "@/components/page";
 import { Button } from "@/components/ui/button";
 import { LiveValue } from "@/components/live-value";
 import { useSailings, laneLabel, transitDays } from "@/lib/queries";
-import { weekdayDate } from "@/lib/format";
+import { shortDate, weekdayDate } from "@/lib/format";
 
 export const Route = createFileRoute("/how-it-works")({
   head: () => ({
@@ -52,6 +52,52 @@ function HowItWorksPage() {
           ))}
         </ol>
 
+        <section className="space-y-3">
+          <h2 className="text-2xl font-extrabold">Cut-offs, explained</h2>
+          <p className="text-secondary-foreground">
+            The cargo cut-off is the last moment your cartons can arrive at our origin warehouse and still travel on
+            that sailing. A sailing takes bookings from the day it opens until its cut-off; after that it closes,
+            loads and sails. Book earlier and the freight rate is lower.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-2xl font-extrabold">The schedule</h2>
+          <div className="overflow-x-auto rounded-xl border border-border bg-card shadow-card">
+            <table className="w-full min-w-[640px] text-sm">
+              <thead className="border-b border-border text-left text-[11px] tracking-[0.08em] text-muted-foreground uppercase">
+                <tr>
+                  {["Voyage", "Lane", "Cut-off", "Sails", "Arrives", "Space"].map((h) => (
+                    <th key={h} className="px-5 py-3 font-semibold">
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {sailings.map((s) => (
+                  <tr key={s.id}>
+                    <td className="px-5 py-3.5 font-mono font-semibold">{s.voyage_no}</td>
+                    <td className="px-5 py-3.5">{laneLabel(s)}</td>
+                    <td className="px-5 py-3.5">
+                      <LiveValue value={shortDate(s.cargo_cutoff_at)} className="text-sm" />
+                    </td>
+                    <td className="px-5 py-3.5">
+                      <LiveValue value={shortDate(s.etd)} className="text-sm" />
+                    </td>
+                    <td className="px-5 py-3.5">
+                      <LiveValue value={shortDate(s.eta)} className="text-sm" />
+                    </td>
+                    <td className="px-5 py-3.5">
+                      <LiveValue value={s.availableCbm.toFixed(1)} unit="cbm" className="text-sm" />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         {next ? (
           <Panel className="flex flex-wrap items-center justify-between gap-4">
             <div>
@@ -63,7 +109,9 @@ function HowItWorksPage() {
               </p>
             </div>
             <Button asChild size="lg">
-              <Link to="/quote">Get a quote</Link>
+              <Link to="/" hash="reserve">
+                Reserve space
+              </Link>
             </Button>
           </Panel>
         ) : null}
