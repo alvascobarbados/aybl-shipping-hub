@@ -27,17 +27,15 @@ export const Route = createFileRoute("/")({
 function Landing() {
   return (
     <PublicLayout>
-      <section className="wrap py-12 sm:py-16">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl leading-[1.05] font-extrabold tracking-[-0.03em] sm:text-5xl">
-            Reserve space on the next sailing to Bridgetown.
-          </h1>
-          <p className="mt-4 text-lg text-secondary-foreground">
-            Direct from Yantian or Shanghai. Book by the cubic metre. One all-in price.
-          </p>
-        </div>
+      <section className="wrap max-w-3xl py-12 sm:py-16">
+        <h1 className="text-4xl leading-[1.05] font-extrabold tracking-[-0.03em] sm:text-5xl">
+          Reserve space on the next sailing to Bridgetown.
+        </h1>
+        <p className="mt-4 text-lg text-secondary-foreground">
+          Direct from Yantian or Shanghai. Book by the cubic metre. One all-in price.
+        </p>
 
-        <div className="mt-10 max-w-3xl">
+        <div className="mt-10">
           <ReservePanel />
           <p className="mt-3 text-right text-sm">
             <Link to="/sailings" className="font-semibold text-primary">
