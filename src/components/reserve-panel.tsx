@@ -20,13 +20,19 @@ import { cn } from "@/lib/utils";
 export function ReservePanel() {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { data: sailings = [] } = useSailings();
+  const { data: sailings = [], isPending: sailingsLoading } = useSailings();
   const { data: rules } = usePriceRules();
+  const { data: ports = [], isPending: portsLoading } = useOriginPorts();
+
+  const loading = sailingsLoading || portsLoading;
 
   const bookable = sailings.filter((s) => boardStatus(s) !== "closed");
-  const lanes = Array.from(new Map(bookable.map((s) => [s.origin.code, s.origin])).values());
+  // Lanes always come from the port list, so both chips show even with no open sailings.
+  const lanes = ports.length
+    ? ports
+    : Array.from(new Map(bookable.map((s) => [s.origin.code, s.origin])).values());
   // Default to the lane whose next cargo cut-off is soonest.
-  const soonest = bookable[0]?.origin.code ?? null;
+  const soonest = bookable[0]?.origin.code ?? lanes[0]?.code ?? null;
 
   const [lane, setLane] = useState<string | null>(null);
   const [pickedId, setPickedId] = useState<string | null>(null);
