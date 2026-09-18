@@ -41,25 +41,26 @@ export function PublicNav() {
         </div>
         <div className="ml-auto flex items-center gap-2">
           {user ? (
-            <Button asChild size="sm">
-              <Link to="/app/sailings">My account</Link>
-            </Button>
+            <Link
+              to="/app/sailings"
+              className="hidden px-2 text-sm font-medium text-secondary-foreground hover:text-foreground sm:block"
+            >
+              My account
+            </Link>
           ) : (
-            <>
-              <Link
-                to="/login"
-                search={{ next: undefined, cbm: undefined, kg: undefined }}
-                className="hidden px-2 text-sm font-medium text-secondary-foreground hover:text-foreground sm:block"
-              >
-                Log in
-              </Link>
-              <Button asChild size="sm">
-                <Link to="/" hash="search" search={{ reserve: undefined, cbm: undefined }}>
-                  Reserve space
-                </Link>
-              </Button>
-            </>
+            <Link
+              to="/login"
+              search={{ next: undefined, cbm: undefined, kg: undefined, reserve: undefined }}
+              className="hidden px-2 text-sm font-medium text-secondary-foreground hover:text-foreground sm:block"
+            >
+              Log in
+            </Link>
           )}
+          <Button asChild size="sm">
+            <Link to="/" hash="search" search={{ reserve: undefined, cbm: undefined }}>
+              Reserve space
+            </Link>
+          </Button>
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" className="md:hidden" aria-label="Menu">
