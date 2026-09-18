@@ -8,6 +8,7 @@ export interface PortRow {
   id: string;
   code: string;
   name: string;
+  city: string | null;
   country: string;
   cfs_address: string | null;
   cfs_address_zh: string | null;
@@ -18,6 +19,7 @@ export interface PortRow {
 export interface SailingRow {
   id: string;
   voyage_no: string;
+  shipment_no: string;
   cargo_cutoff_at: string;
   etd: string;
   eta: string;
@@ -52,7 +54,7 @@ export async function fetchSailings(): Promise<SailingRow[]> {
     supabase
       .from("sailings")
       .select(
-        "id, voyage_no, cargo_cutoff_at, etd, eta, capacity_cbm, capacity_kg, status, origin:ports!sailings_origin_port_id_fkey(*), destination:ports!sailings_destination_port_id_fkey(*)",
+        "id, voyage_no, shipment_no, cargo_cutoff_at, etd, eta, capacity_cbm, capacity_kg, status, origin:ports!sailings_origin_port_id_fkey(*), destination:ports!sailings_destination_port_id_fkey(*)",
       )
       .order("etd", { ascending: true }),
     supabase.from("sailing_availability").select("*"),
