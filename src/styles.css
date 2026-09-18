@@ -46,6 +46,11 @@
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-line: var(--line);
+  --color-faint: var(--faint);
+  --color-warning-ink: var(--warning-ink);
+  --color-danger-ink: var(--danger-ink);
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-board: var(--board);
@@ -103,6 +108,11 @@
   --destructive-foreground: oklch(1 0 0);
 
   --border: oklch(0.925 0.011 252.1);
+  --border-strong: #b8c2d0;
+  --line: #c9d2de;
+  --faint: #a9b4c4;
+  --warning-ink: #8a5a12;
+  --danger-ink: #a33327;
   --input: oklch(0.925 0.011 252.1);
   --ring: oklch(0.428 0.168 260.5);
 
