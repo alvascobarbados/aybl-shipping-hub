@@ -25,7 +25,7 @@ export function PublicNav() {
   return (
     <nav className="sticky top-0 z-30 h-16 border-b border-border bg-background">
       <div className="wrap flex h-full items-center gap-8">
-        <Link to="/" className="shrink-0">
+        <Link to="/" search={{ reserve: undefined, cbm: undefined }} className="shrink-0">
           <Wordmark />
         </Link>
         <div className="hidden items-center gap-6 md:flex">
@@ -55,7 +55,7 @@ export function PublicNav() {
                 Log in
               </Link>
               <Button asChild size="sm">
-                <Link to="/" hash="reserve">
+                <Link to="/" hash="search" search={{ reserve: undefined, cbm: undefined }}>
                   Reserve space
                 </Link>
               </Button>
@@ -85,7 +85,7 @@ export function PublicNav() {
               </div>
               <div className="mt-auto p-4">
                 <Button asChild size="lg" className="w-full">
-                  <Link to="/" hash="reserve">
+                  <Link to="/" hash="search" search={{ reserve: undefined, cbm: undefined }}>
                     Reserve space
                   </Link>
                 </Button>

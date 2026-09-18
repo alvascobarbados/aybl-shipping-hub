@@ -109,7 +109,7 @@ function HowItWorksPage() {
               </p>
             </div>
             <Button asChild size="lg">
-              <Link to="/" hash="reserve">
+              <Link to="/" hash="search" search={{ reserve: undefined, cbm: undefined }}>
                 Reserve space
               </Link>
             </Button>
