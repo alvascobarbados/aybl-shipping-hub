@@ -133,8 +133,22 @@ export function ReservePanel() {
               </li>
             );
           })}
-          {laneSailings.length === 0 ? (
-            <li className="px-3 py-6 text-sm text-board-muted">No open sailings on this lane right now.</li>
+          {loading
+            ? [0, 1, 2].map((i) => (
+                <li key={i} className="px-3 py-4">
+                  <div className="h-4 w-28 animate-pulse rounded bg-board-2" />
+                  <div className="mt-2 h-3 w-56 animate-pulse rounded bg-board-2" />
+                </li>
+              ))
+            : null}
+          {!loading && laneSailings.length === 0 ? (
+            <li className="px-3 py-6 text-sm text-board-muted">
+              No open sailings on this lane right now.{" "}
+              <Link to="/contact" className="font-semibold text-board-foreground underline">
+                Join the waitlist or contact us
+              </Link>{" "}
+              and we'll tell you as soon as the next one opens.
+            </li>
           ) : null}
         </ul>
       </div>
