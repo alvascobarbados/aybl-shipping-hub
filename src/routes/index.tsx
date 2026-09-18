@@ -109,16 +109,16 @@ function Landing() {
           mostSpaceSub={mostSpaceRow ? `${freeCbm(mostSpaceRow).toFixed(1)} cbm` : null}
         />
 
-        <div className="mt-5">
+        <div className="mt-5 space-y-3">
           {isPending ? (
             [0, 1, 2].map((i) => (
-              <div key={i} className="border-t border-border py-6">
+              <div key={i} className="rounded-xl border border-border bg-card p-4 lg:px-6 lg:py-[22px]">
                 <div className="h-4 w-40 animate-pulse rounded bg-surface-2" />
                 <div className="mt-3 h-4 w-full animate-pulse rounded bg-surface-2" />
               </div>
             ))
           ) : rows.length === 0 ? (
-            <div className="border-t border-border py-10 text-center">
+            <div className="rounded-xl border border-border bg-card p-4 py-10 text-center lg:px-6">
               <p className="text-sm font-semibold">No sailings match.</p>
               <Button
                 variant="outline"
