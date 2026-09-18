@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useSailings, laneLabel } from "@/lib/queries";
 import type { Quote } from "@/lib/pricing";
+import { num } from "@/lib/reserve";
 
 export const Route = createFileRoute("/_authenticated/app/book/$sailingId")({
   validateSearch: (s: Record<string, unknown>) => ({
@@ -67,6 +68,7 @@ function BookPage() {
       />
       <QuoteForm
         sailing={sailing}
+        initial={{ ...(cbm ? { cbm } : {}), ...(kg ? { grossKg: kg } : {}) }}
         cta={(quote, v) => (
           <Button className="w-full" size="lg" disabled={busy} onClick={() => hold(quote, v)}>
             {busy ? "Holding space…" : "Hold space & continue"}
