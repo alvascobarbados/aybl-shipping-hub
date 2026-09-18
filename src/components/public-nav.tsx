@@ -77,7 +77,7 @@ export function PublicNav() {
                 ))}
                 <Link
                   to="/login"
-                  search={{ next: undefined, cbm: undefined, kg: undefined }}
+                  search={{ next: undefined, cbm: undefined, kg: undefined, reserve: undefined }}
                   className="rounded-md px-3 py-2.5 text-base font-medium hover:bg-surface"
                 >
                   Log in
