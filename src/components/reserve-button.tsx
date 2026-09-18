@@ -13,10 +13,10 @@ export function ReserveButton({ sailing, cbm = 1 }: { sailing: SailingRow; cbm?:
 
   function go() {
     if (user) {
-      navigate({ to: "/app/book/$sailingId", params: { sailingId: sailing.id }, search: { cbm } });
+      navigate({ to: "/app/book/$sailingId", params: { sailingId: sailing.id }, search: { cbm, kg: undefined } });
       return;
     }
-    navigate({ to: "/signup", search: { next: bookPath(sailing.id), cbm } });
+    navigate({ to: "/signup", search: { next: bookPath(sailing.id), cbm, kg: undefined } });
   }
 
   return (
