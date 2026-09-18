@@ -57,8 +57,12 @@ function ContactEditor({ contact }: { contact: SiteContact }) {
 
   async function save() {
     setBusy(true);
-    const patch = Object.fromEntries(fields.map(([k]) => [k, draft[k] ?? null]));
-    const { error } = await supabase.from("site_settings").update(patch).eq("id", contact.id);
+    const patch: Record<string, string | null> = {};
+    for (const [k] of fields) patch[String(k)] = (draft[k] as string | null) ?? null;
+    const { error } = await supabase
+      .from("site_settings")
+      .update(patch as never)
+      .eq("id", contact.id);
     setBusy(false);
     if (error) {
       toast.error(error.message);

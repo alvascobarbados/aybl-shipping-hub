@@ -40,7 +40,7 @@ function LoginPage() {
       navigate({
         to: "/app/book/$sailingId",
         params: { sailingId },
-        search: { ...(search.cbm ? { cbm: search.cbm } : {}), ...(search.kg ? { kg: search.kg } : {}) },
+        search: { cbm: search.cbm, kg: search.kg },
       });
       return;
     }
@@ -110,11 +110,7 @@ function LoginPage() {
             No account?{" "}
             <Link
               to="/signup"
-              search={{
-                ...(search.next ? { next: search.next } : {}),
-                ...(search.cbm ? { cbm: search.cbm } : {}),
-                ...(search.kg ? { kg: search.kg } : {}),
-              }}
+              search={{ next: search.next, cbm: search.cbm, kg: search.kg }}
               className="font-semibold text-primary"
             >
               Create one
