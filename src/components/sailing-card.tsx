@@ -108,9 +108,13 @@ export function SailingCard({
             </Fact>
           ) : null}
         </div>
-        <Button asChild variant={waitlist ? "outline" : "default"}>
-          <Link to={href ?? "/quote"}>{waitlist ? "Join waitlist" : "Get quote"}</Link>
-        </Button>
+        {action ?? (
+          <Button asChild variant={waitlist ? "outline" : "default"}>
+            <Link to={href ?? "/"} hash={href ? undefined : "reserve"}>
+              {waitlist ? "Join waitlist" : "Reserve space"}
+            </Link>
+          </Button>
+        )}
       </div>
     </article>
   );
