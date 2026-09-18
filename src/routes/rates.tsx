@@ -3,8 +3,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PublicLayout } from "@/components/public-layout";
 import { PageHeader, Panel } from "@/components/page";
 import { LiveValue } from "@/components/live-value";
-import { laneLabel, quoteFor, usePriceRules, useSailings } from "@/lib/queries";
+import { laneLabel, quoteFor, transitDays, usePriceRules, useSailings } from "@/lib/queries";
 import { usd } from "@/lib/format";
+import { legacyLclEstimate } from "@/lib/pricing";
 
 export const Route = createFileRoute("/rates")({
   head: () => ({
@@ -74,6 +75,38 @@ function RatesPage() {
             </table>
           </Panel>
         ) : null}
+
+        <Panel>
+          <h2 className="font-bold">Compared with a Panama or Miami consolidator</h2>
+          <p className="mt-1 text-sm text-secondary-foreground">
+            Same cargo, routed through a transhipment hub instead of sailing directly.
+          </p>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            {lanes.map((s) => {
+              const q = rules ? quoteFor(s, rules, { cbm: 1 }) : null;
+              return (
+                <div key={`cmp-${s.origin.code}`} className="rounded-lg bg-surface p-4 text-sm">
+                  <p className="font-semibold">{laneLabel(s)}</p>
+                  <div className="mt-3 flex justify-between">
+                    <span className="text-secondary-foreground">Our all-in, 1 cbm</span>
+                    <LiveValue value={q ? usd(q.total) : "—"} stamp={s.lastChangeAt} className="text-sm" />
+                  </div>
+                  <div className="mt-1 flex justify-between">
+                    <span className="text-secondary-foreground">Legacy LCL, 1 cbm</span>
+                    <LiveValue value={usd(legacyLclEstimate(1))} className="text-sm" />
+                  </div>
+                  <div className="mt-1 flex justify-between">
+                    <span className="text-secondary-foreground">Transit, port to port</span>
+                    <span>
+                      <LiveValue value={transitDays(s)} unit="days" className="text-sm" /> vs{" "}
+                      <LiveValue value={45} unit="days" className="text-sm" />
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </Panel>
       </div>
     </PublicLayout>
   );
