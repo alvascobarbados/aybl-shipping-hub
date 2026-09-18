@@ -13,6 +13,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { weekdayDate } from "@/lib/format";
 import type { SailingRow } from "@/lib/queries";
 import { freeCbm, originCity, portLabel } from "@/lib/sailing-search";
+import { cn } from "@/lib/utils";
 
 interface Held {
   held: number;
@@ -47,20 +48,27 @@ export function ReserveDrawer({ sailing, cbm, onCbm, onClose }: Props) {
   const [busy, setBusy] = useState(false);
   const [held, setHeld] = useState<Held | null>(null);
 
+  // The panel stays mounted so it can slide in and out. `open` drives the transform;
+  // `shown` keeps the last sailing's content on screen while the panel slides away.
+  const open = sailing !== null;
+  const [shown, setShown] = useState<SailingRow | null>(sailing);
+  useEffect(() => {
+    if (sailing) setShown(sailing);
+  }, [sailing]);
+  const s = sailing ?? shown;
+
   useEffect(() => {
     setHeld(null);
   }, [sailing?.id]);
 
   useEffect(() => {
-    if (!sailing) return undefined;
+    if (!open) return undefined;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [sailing, onClose]);
+  }, [open, onClose]);
 
-  if (!sailing) return null;
-
-  const free = freeCbm(sailing);
+  const free = s ? freeCbm(s) : 0;
 
   async function hold() {
     if (!sailing) return;
@@ -77,14 +85,25 @@ export function ReserveDrawer({ sailing, cbm, onCbm, onClose }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50">
+    <div className={cn("fixed inset-0 z-50", !open && "pointer-events-none")} aria-hidden={!open} inert={!open}>
       <button
         type="button"
         aria-label="Close"
         onClick={onClose}
-        className="absolute inset-0 bg-[rgba(15,31,51,0.38)]"
+        tabIndex={open ? 0 : -1}
+        className={cn(
+          "absolute inset-0 bg-[rgba(15,31,51,0.38)] transition-opacity duration-300 motion-reduce:transition-none",
+          open ? "opacity-100" : "opacity-0",
+        )}
       />
-      <aside className="absolute inset-x-0 bottom-0 flex max-h-[88%] flex-col rounded-t-[18px] bg-card shadow-board sm:inset-y-0 sm:right-auto sm:left-0 sm:max-h-none sm:w-[440px] sm:rounded-none">
+      <aside
+        className={cn(
+          "absolute inset-x-0 bottom-0 flex max-h-[88%] flex-col rounded-t-[18px] bg-card shadow-board",
+          "sm:inset-y-0 sm:right-auto sm:left-0 sm:max-h-none sm:w-[440px] sm:rounded-none",
+          "will-change-transform transition-transform duration-[380ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] motion-reduce:transition-none",
+          open ? "translate-y-0 sm:translate-x-0" : "translate-y-[106%] sm:translate-y-0 sm:-translate-x-[104%]",
+        )}
+      >
         <div className="flex items-center justify-between border-b border-border px-4 py-3">
           <span className="text-base font-bold">Your reservation</span>
           <button
@@ -99,7 +118,7 @@ export function ReserveDrawer({ sailing, cbm, onCbm, onClose }: Props) {
           </button>
         </div>
 
-        {held ? (
+        {s === null ? null : held ? (
           <>
             <div className="flex flex-1 flex-col gap-[22px] overflow-auto px-4 py-7">
               <div className="flex flex-col items-start gap-2">
@@ -114,7 +133,7 @@ export function ReserveDrawer({ sailing, cbm, onCbm, onClose }: Props) {
                 {held.held > 0 ? (
                   <span className="text-sm text-secondary-foreground">
                     <b className="font-mono font-semibold">{held.held.toFixed(1)} cbm</b> on{" "}
-                    <b className="font-mono font-semibold">{sailing.shipment_no}</b>
+                    <b className="font-mono font-semibold">{s.shipment_no}</b>
                     {held.ref ? <> · <span className="font-mono">{held.ref}</span></> : null}
                     {held.waitlisted > 0 ? (
                       <>
@@ -136,8 +155,8 @@ export function ReserveDrawer({ sailing, cbm, onCbm, onClose }: Props) {
                   <Step n={1}>Add shipment details</Step>
                   <Step n={2}>Pay to confirm</Step>
                   <Step n={3}>
-                    Goods in {originCity(sailing.origin)} by
-                    <b className="ml-1 font-mono font-semibold">{weekdayDate(sailing.cargo_cutoff_at)}</b>
+                    Goods in {originCity(s.origin)} by
+                    <b className="ml-1 font-mono font-semibold">{weekdayDate(s.cargo_cutoff_at)}</b>
                   </Step>
                 </div>
               ) : null}
@@ -162,18 +181,18 @@ export function ReserveDrawer({ sailing, cbm, onCbm, onClose }: Props) {
             <div className="flex flex-1 flex-col gap-[18px] overflow-auto px-4 py-[18px]">
               <div className="flex flex-col gap-2">
                 <div className="flex items-baseline gap-2">
-                  <span className="font-mono text-[15px] font-semibold tabular-nums">{sailing.shipment_no}</span>
-                  <span className="text-xs text-muted-foreground">{portLabel(sailing.origin)}</span>
+                  <span className="font-mono text-[15px] font-semibold tabular-nums">{s.shipment_no}</span>
+                  <span className="text-xs text-muted-foreground">{portLabel(s.origin)}</span>
                 </div>
                 <div className="flex">
-                  <DeadlineChip cutoff={sailing.cargo_cutoff_at} />
+                  <DeadlineChip cutoff={s.cargo_cutoff_at} />
                 </div>
               </div>
 
-              <JourneyLine sailing={sailing} size="sm" />
+              <JourneyLine sailing={s} size="sm" />
 
               <div className="flex flex-col gap-2.5">
-                <ContainerBar sailing={sailing} yours={cbm} />
+                <ContainerBar sailing={s} yours={cbm} />
                 <div className="flex items-center justify-between gap-3">
                   <span className="text-[13px] font-bold">Your space</span>
                   <CbmStepper value={cbm} max={Math.max(0.5, free)} onChange={onCbm} size="md" />
@@ -191,12 +210,12 @@ export function ReserveDrawer({ sailing, cbm, onCbm, onClose }: Props) {
                   <p className="text-[13px] font-semibold">Log in to hold this space</p>
                   <div className="mt-2.5 flex gap-2">
                     <Button asChild size="sm" className="rounded-lg">
-                      <Link to="/login" search={{ next: undefined, cbm, kg: undefined, reserve: sailing.id }}>
+                      <Link to="/login" search={{ next: undefined, cbm, kg: undefined, reserve: s.id }}>
                         Log in
                       </Link>
                     </Button>
                     <Button asChild size="sm" variant="outline" className="rounded-lg">
-                      <Link to="/signup" search={{ next: undefined, cbm, kg: undefined, reserve: sailing.id }}>
+                      <Link to="/signup" search={{ next: undefined, cbm, kg: undefined, reserve: s.id }}>
                         Create account
                       </Link>
                     </Button>
