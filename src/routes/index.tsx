@@ -143,8 +143,9 @@ function Landing() {
           )}
         </div>
 
-        <div className="mt-6 border-t border-border pt-4">
+        <div className="mt-6">
           <Legend />
+        </div>
         </div>
       </section>
 
