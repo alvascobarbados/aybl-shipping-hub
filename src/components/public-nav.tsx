@@ -13,7 +13,6 @@ import { usd } from "@/lib/format";
 
 const links = [
   { to: "/sailings", label: "Sailings" },
-  { to: "/rates", label: "Rates" },
   { to: "/how-it-works", label: "How it works" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
