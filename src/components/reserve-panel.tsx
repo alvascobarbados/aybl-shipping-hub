@@ -10,7 +10,15 @@ import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/use-auth";
 import { countdown, shortDate, usd, weekdayDate } from "@/lib/format";
 import { bookPath } from "@/lib/reserve";
-import { boardStatus, laneLabel, quoteFor, usePriceRules, useSailings, type SailingRow } from "@/lib/queries";
+import {
+  boardStatus,
+  laneLabel,
+  quoteFor,
+  useOriginPorts,
+  usePriceRules,
+  useSailings,
+  type SailingRow,
+} from "@/lib/queries";
 import { cn } from "@/lib/utils";
 
 /**
