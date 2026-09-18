@@ -97,7 +97,8 @@ function Landing() {
         </div>
       </section>
 
-      <section className="wrap max-w-[1120px] py-8">
+      <section className="bg-surface pb-12">
+        <div className="wrap max-w-[1120px] pt-2">
         <ResultsHeader
           lane={laneLabel}
           count={rows.length}
