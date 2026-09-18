@@ -1,14 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
-import { LiveBar, PublicNav } from "@/components/public-nav";
+import { PublicNav } from "@/components/public-nav";
 import { Wordmark } from "@/components/brand";
+import { contactBySide, useSiteContacts } from "@/lib/site";
 
-export function PublicLayout({ children, liveBar = true }: { children: ReactNode; liveBar?: boolean }) {
+export function PublicLayout({ children }: { children: ReactNode; liveBar?: boolean }) {
   return (
     <div className="min-h-screen bg-background">
       <PublicNav />
-      {liveBar ? <LiveBar /> : null}
       <main>{children}</main>
       <SiteFooter />
     </div>
@@ -16,34 +16,45 @@ export function PublicLayout({ children, liveBar = true }: { children: ReactNode
 }
 
 function SiteFooter() {
+  const { data: contacts } = useSiteContacts();
+  const bb = contactBySide(contacts, "barbados");
+  const cn = contactBySide(contacts, "china");
+
   return (
-    <footer className="mt-24 border-t border-border bg-surface py-12">
-      <div className="wrap flex flex-wrap items-start justify-between gap-8">
-        <div className="max-w-xs">
+    <footer className="mt-20 border-t border-border bg-surface py-12">
+      <div className="wrap grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
           <Wordmark className="text-xl" />
-          <p className="mt-3 text-sm text-muted-foreground">
-            Direct LCL ocean freight, Yantian and Shanghai to Bridgetown. Book cubic metres, not containers.
+          <p className="mt-3 text-sm text-muted-foreground">Yantian → Bridgetown</p>
+          <p className="text-sm text-muted-foreground">Shanghai → Bridgetown</p>
+        </div>
+        <FooterCol
+          title="Site"
+          items={[
+            { to: "/sailings", label: "Sailings" },
+            { to: "/rates", label: "Rates" },
+            { to: "/how-it-works", label: "How it works" },
+          ]}
+        />
+        <FooterCol
+          title="More"
+          items={[
+            { to: "/about", label: "About" },
+            { to: "/contact", label: "Contact" },
+            { to: "/login", label: "Log in" },
+          ]}
+        />
+        <div className="text-sm">
+          <p className="eyebrow">Contact</p>
+          <p className="mt-3 text-secondary-foreground">
+            {bb ? `${bb.label} · ${bb.phone ?? ""} · ${bb.email ?? ""}` : "—"}
+          </p>
+          <p className="mt-1 text-secondary-foreground">
+            {cn ? `${cn.label} · ${cn.phone ?? ""} · ${cn.email ?? ""}` : "—"}
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-10 text-sm sm:grid-cols-3">
-          <FooterCol
-            title="Service"
-            items={[
-              { to: "/sailings", label: "Sailings" },
-              { to: "/rates", label: "Rates" },
-              { to: "/how-it-works", label: "How it works" },
-            ]}
-          />
-          <FooterCol
-            title="Book"
-            items={[
-              { to: "/quote", label: "Get a quote" },
-              { to: "/signup", label: "Create account" },
-              { to: "/login", label: "Log in" },
-            ]}
-          />
-        </div>
       </div>
+      <div className="wrap mt-10 text-sm text-muted-foreground">© ABL Shipping</div>
     </footer>
   );
 }
@@ -52,7 +63,7 @@ function FooterCol({ title, items }: { title: string; items: Array<{ to: string;
   return (
     <div>
       <p className="eyebrow">{title}</p>
-      <ul className="mt-3 space-y-2">
+      <ul className="mt-3 space-y-2 text-sm">
         {items.map((i) => (
           <li key={i.to}>
             <Link to={i.to} className="text-secondary-foreground hover:text-foreground">
